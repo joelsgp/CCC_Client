@@ -1,0 +1,84 @@
+@import "~bootstrap/scss/bootstrap";
+
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-free/scss/brands.scss';
+@import '~@fortawesome/fontawesome-free/scss/solid.scss';
+
+body {
+    min-width: 400px;
+    width: 400px;
+    max-width: 400px;
+    min-height: 500px;
+}
+
+.popover {
+    min-width: 400px;
+    max-width: 400px;
+}
+
+.head {
+    margin-top: 20px;
+}
+
+#iconMenu {
+    margin-bottom: 5px;
+    margin-left: 10px;
+    background-color: #f8f9fa;
+}
+#iconMenu .nav-item {
+    background-color: #007bff;
+}
+#iconMenu .nav-item:hover{
+    background-color: #002fff;
+}
+#iconMenu .nav-item > a {
+    color: white;
+}
+#iconMenu .cccAction {
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+}
+
+/* Scrollbar */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+.motd-area {
+    margin-top: 20px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    background-color: #007bff;
+    color: white;
+    font-weight: bolder;
+}
+
+.saveCardAttrs .badge {
+    margin-right: 5px;
+}
+
+.saveCard {
+    margin-top: 10px;
+}
+
+.saveCard .card-body .card-title {
+    margin-bottom: 6px;
+}

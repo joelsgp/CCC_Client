@@ -5,6 +5,7 @@ import { CCCEnv } from './popup_logic/CCCEnv';
 let count = 0;
 
 $(function () {
+
     const queryInfo = {
         active: true,
         currentWindow: true
