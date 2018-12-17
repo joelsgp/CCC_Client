@@ -5,7 +5,7 @@ type HTTPMethod = "GET"|"POST"|"DELETE"|"OPTIONS";
 
 export class CCCAPI {
     private env: CCCEnv;
-    private token?: string;
+    public token?: string;
     onMotD: (motd: string) => void;
 
     constructor(env: CCCEnv, token: string = null) {
@@ -108,5 +108,9 @@ export class CCCAPI {
 
     exportData() : Promise<any> {
         return this.request("/data", "GET");
+    }
+
+    putSettings(settings: any) {
+        return this.request("/settings", "POST", settings, true);
     }
 }
