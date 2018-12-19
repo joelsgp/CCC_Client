@@ -28,9 +28,7 @@
         "activeTab",
         "storage",
         "https://cc.timia2109.com/*",
-        "http://orteil.dashnet.org/cookieclicker/*",
-        "http://itserver:82/*",
-        "https://timia2109.ddns.net/*"
+        "http://orteil.dashnet.org/cookieclicker/*"
     ],
     "web_accessible_resources": [
         "js/vendor.js",

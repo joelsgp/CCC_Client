@@ -1,34 +1,26 @@
-import { CCCEnv } from "./CCCEnv";
 import axios from 'axios';
+import { CCCAPIInformation } from "./CCCAPIInformation";
+import { CCCSave } from '../apiTypes/CCCSave';
 
 type HTTPMethod = "GET"|"POST"|"DELETE"|"OPTIONS";
 
 export class CCCAPI {
-    private env: CCCEnv;
-    public token?: string;
+    private apiInformation: CCCAPIInformation;
     onMotD: (motd: string) => void;
 
-    constructor(env: CCCEnv, token: string = null) {
-        this.env = env;
-        this.token = token;
+    constructor(apiInformation: CCCAPIInformation) {
+        this.apiInformation = apiInformation;
     }
 
     private async request(endpoint: string, method: HTTPMethod, body?: any, json: boolean = false) : Promise<any> {
         let requestInfo: any = {
-            url: this.env.url+endpoint,
+            url: this.apiInformation.baseUrl+endpoint,
             method: method,
-            headers: {
-                "X-Pluginv": this.env.version,
-                "X-Browser": this.env.browser
-            }
+            headers: this.apiInformation.getApiHeaders()
         }
 
-        /* if (this.env.settings > browserlabel) {
-            requestInfo.headers["X-Browser-Label"] = value;
-        } */
-
-        if (this.token) {
-            requestInfo.headers["X-Token"] = this.token;
+        if (this.apiInformation.token) {
+            requestInfo.headers["X-Token"] = this.apiInformation.token;
         }
 
         if (body) {
@@ -37,10 +29,10 @@ export class CCCAPI {
                 for (let key in body) {
                     params.append(key, body[key]);
                 }
-                requestInfo.params = params;
+                requestInfo.data = params;
             }
             else {
-                requestInfo.params = body;
+                requestInfo.data = body;
             }
         }
 
@@ -85,7 +77,13 @@ export class CCCAPI {
         return this.request("/saves", "GET");
     }
 
-    // putSave(...) maybe here
+    getSave(savename: string) : Promise<any> {
+        return this.request("/save/"+encodeURIComponent(savename), "GET");
+    }
+
+    putSave(save: CCCSave) : Promise<any> {
+        return this.request("/save/"+encodeURIComponent(save.name), "POST", save, true);
+    }
 
     deleteSave(name: string) : Promise<any> {
         return this.request("/save/"+encodeURIComponent(name), "DELETE");
@@ -103,14 +101,10 @@ export class CCCAPI {
     }
 
     deleteUser(password: string) : Promise<any> {
-        return this.request("/user", "DELETE");
+        return this.request("/user", "DELETE", {pass: password});
     }
 
     exportData() : Promise<any> {
         return this.request("/data", "GET");
-    }
-
-    putSettings(settings: any) {
-        return this.request("/settings", "POST", settings, true);
     }
 }

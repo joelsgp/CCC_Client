@@ -1,0 +1,168 @@
+<div id="beforeLoad">
+    <div class="text-center" style="margin-top: 10px;">
+        <i class="fas fa-circle-notch fa-spin fa-5x"></i>
+    </div>
+</div>
+
+<div id="afterLoad" hidden>
+    <div class="text-center" style="margin-top: 10px;">
+        <i class="fas fa-user fa-5x"></i>
+        <br>
+        <h2 id="username"></h2>
+        <div class="btn-group">
+            <button class="btn btn-danger btn-xs" id="logout">
+                <i class="fas fa-power-off"></i>
+                Logout
+            </button>
+            <button class="btn btn-primary btn-xs" id="exportData">
+                <i class="fas fa-download"></i>
+                Export Data
+            </button>
+        </div>
+        <hr>
+    </div>
+
+    Account created on
+    <span id="create"></span>
+    <br> Logged in on
+    <span id="tokens"></span> devices
+    <br>
+    <span id="games"></span> saved games
+
+    <br>
+    <br>
+
+    <div class="accordion" id="accordionAccount">
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accGIM">
+                        <i class="fas fa-tag"></i>
+                        Game Information Mode
+                    </button>
+                </h3>
+            </div>
+
+            <div id="accGIM" class="collapse" data-parent="#accordionAccount">
+                <div class="card-body">
+                    Select how the Game Information (like Cookies, CpS, etc.) should shown
+                    <br>
+                    <small>Auto Save</small>
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accMods">
+                        <i class="fas fa-puzzle-piece"></i>
+                        Autoload Addons
+                    </button>
+                </h3>
+            </div>
+
+            <div id="accMods" class="collapse" data-parent="#accordionAccount">
+                <div class="card-body">
+                    Autoload a mod on CC start.<br>
+                    Insert one ModUrl per line.<br>
+                    Need to reload CC.<br>
+                    <textarea rows="6" class="form-control"></textarea>
+                    <button class="btn btn-success" id="accModsSaveBtn">
+                        <i class="fas fa-save"></i> Save
+                    </button>
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accBrowserlabel">
+                        <i class="fas fa-browser"></i>
+                        Set name for this browser
+                    </button>
+                </h3>
+            </div>
+
+            <div id="accBrowserlabel" class="collapse" data-parent="#accordionAccount">
+                <div class="card-body">
+                    The Browserlabel helps you, to identify from which computer the save was uploaded.
+                    <br> You can set any name.
+                    <br>
+                    <input type="text" id="inpBrowserLabel" maxlength="32" class="form-control">
+                    <br>
+                    <button class="btn btn-success" id="accSaveBrowserLabel">
+                        <i class="fas fa-save"></i> Save (Show saves on success)
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accContCPW">
+                        <i class="fas fa-key"></i>
+                        Change Password
+                    </button>
+                </h3>
+            </div>
+
+            <div id="accContCPW" class="collapse" data-parent="#accordionAccount">
+                <div class="card-body">
+                    <form id="passwordChange">
+                        <div class="form-group">
+                            <label for="oldPass">Old Password</label>
+                            <input type="password" class="form-control" id="oldPass" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="newPass">New Password</label>
+                            <input type="password" class="form-control" id="newPass" placeholder="Password">
+                        </div>
+                        <small>Your password has to be at least 8 characters long.</small>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i>
+                            Save
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#accContDelete">
+                        <i class="fas fa-trash"></i>
+                        Delete Account
+                    </button>
+                </h3>
+            </div>
+
+            <div id="accContDelete" class="collapse" data-parent="#accordionAccount">
+                <div class="card-body">
+                    <form id="deleteAccForm">
+                        <strong>
+                            This will delete your account. You cannot undo!
+                        </strong>
+                        <div class="form-group">
+                            <label for="pass">Password</label>
+                            <input type="password" class="form-control" id="pass" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-trash"></i>
+                            Yes, delete me!
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

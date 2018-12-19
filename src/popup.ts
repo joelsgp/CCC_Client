@@ -1,45 +1,57 @@
 import * as moment from 'moment';
 import * as $ from 'jquery';
-import { CCCEnv } from './popup_logic/CCCEnv';
+(<any>window).jQuery = $;
+import "bootstrap";
+import { CCCEnv } from './CCCClasses/CCCEnv';
+import { isCookieClickerPage } from './CCCClasses/CCCUtils';
+import { Home } from './CCCClasses/subpages/Home';
+import { SaveButton, SaveRepeatButton } from './CCCClasses/subpages/SaveButtons';
+import { Login } from './CCCClasses/subpages/Login';
 
-let count = 0;
-
-$(function () {
-
-    const queryInfo = {
-        active: true,
-        currentWindow: true
-    };
-
-    chrome.tabs.query(queryInfo, function (tabs) {
-        $('#url').text(tabs[0].url);
-        $('#time').text(moment().format('YYYY-MM-DD HH:mm:ss'));
-    });
-
-    chrome.browserAction.setBadgeText({ text: count.toString() });
-    $('#countUp').click(() => {
-        chrome.browserAction.setBadgeText({ text: (++count).toString() });
-    });
-
-    $('#changeBackground').click(() => {
-        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, {
-                color: '#555555'
-            },
-                function (msg) {
-                    console.log("result message:", msg);
-                });
-        });
-    });
-
+$(async function () {
     let env = new CCCEnv({
-        container: $(""),
-        menu: $("")
+        container: $("#pageContainer"),
+        menu: $("#iconMenu"),
+        motd_area: $(".motd-area")
     });
 
-    setTimeout(()=> {
-        console.log(
-            env.colorParser.parse(10000000000000)
-        );
-    }, 5000);
+    // Write Version
+    $("#version").text(env.version);
+
+    // Scared of Firefox
+    try {
+        // Check if CC
+        if (await isCookieClickerPage() == false) {
+            // Abort plugin, open CC
+            window.open("http://orteil.dashnet.org/cookieclicker/", "_blank");
+        }
+    } catch (e) {
+        console.log(e);
+    }
+
+    // Load Settings
+    await env.settings.load();
+
+    // Set moment lang
+    let locale = window.navigator.language;
+    locale = locale.substring(0, locale.indexOf("-"));
+    moment.locale(locale);
+
+    // Since here everything is ready and initialized for the subpages
+    // Add Routes & Menu Entrys
+    env.router.addRoutes([
+        new Home(),
+        new Login(),
+        new SaveButton(env),
+        new SaveRepeatButton(env)
+    ]);
+
+    if (env.settings.get("token") == "") {
+        env.router.open("login");
+    }
+    else {
+        env.token = env.settings.get("token");
+        env.router.open("home");
+    }
+
 });

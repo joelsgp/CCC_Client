@@ -1,0 +1,55 @@
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#login-login" role="tab">Login</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#login-register" role="tab">Register</a>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+
+    <div class="tab-pane fade show active" id="login-login" role="tabpanel">
+        <h2>Login</h2>
+        <small>
+            Login to use CCC.
+        </small>
+        <form id="formLogin">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Username</label>
+                <input type="text" class="form-control user" placeholder="Enter Username">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control pass" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-sign-in"></i> Login</button>
+        </form>
+    </div>
+
+    <div class="tab-pane fade" id="login-register" role="tabpanel">
+        <h2>Register</h2>
+        <small>
+            Your Username should not contain spaces and should be less then 32 characters
+            <br> Your password has to be at least 8 characters long.
+            <br> Remember your Password. You can't restore it. Use a Password Manager like <a href="https://keepass.info/" target="_blank">KeePass</a>. It's free!
+            <br> To get more information open the FAQ
+        </small>
+        <form id="formRegister">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Username</label>
+                <input type="text" class="form-control user" placeholder="Enter Username">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control pass" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-plus-square"></i> Register</button>
+        </form>
+    </div>
+</div>
+
+<br>
+<a href="/full_pages/docs.html?f=faq" target="_blank">
+    <i class="fas fa-book"></i> Open FAQ</a>

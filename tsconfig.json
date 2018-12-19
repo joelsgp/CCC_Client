@@ -1,11 +1,12 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "target": "es6",
+        "target": "es2017",
         "noImplicitAny": false,
         "sourceMap": false,
         "rootDir": "src",
         "outDir": "dist/js",
-        "noEmitOnError": true
+        "noEmitOnError": true,
+        "resolveJsonModule": true
     }
 }

@@ -1,0 +1,125 @@
+import { CCCAPIInformation, HeaderMap } from "./CCCClasses/CCCAPIInformation";
+import { CCCSave } from "./apiTypes/CCCSave";
+import { CCCAPI } from "./CCCClasses/CCCAPI";
+
+declare global {
+    interface Window { 
+        Game: any; 
+        cccEmbedd: CCCEmbeddedFeatures;
+    }
+}
+
+class CCCEmbeddedFeatures implements CCCAPIInformation {
+    private bannerNode: HTMLElement;
+    private intervalId: number;
+    private api: CCCAPI;
+
+    constructor() {
+        this.bannerNode = document.getElementById("CCC_banner_node");
+        debugger;
+        this.intervalId = -1;
+        this.api = new CCCAPI(this);
+        window.addEventListener("keydown", ()=>this.onKeyDown);
+        window.addEventListener("message", ()=>this.onMessage, false);
+
+        if (this.token === undefined) {
+            this.showMessage("Please login on CCC on the addon popup");
+        }
+    }
+
+    get token(): string {
+        return this.bannerNode.dataset.token;
+    }
+    
+    get baseUrl(): string {
+        return this.bannerNode.dataset.url;
+    }
+    
+    getApiHeaders(): HeaderMap {
+        return {};    
+    }
+
+    showMessage(message: string) : void {
+        window.Game.Notify(message, "by CookieClickerCloud", 1);
+    }
+
+    upload() : void {
+        let save: CCCSave = {
+            name: window.Game.backeryName,
+            cookies: Math.floor(window.Game.cookies),
+            wrinkler: 0,
+            lumps: Math.floor(window.Game.lumps),
+            save: window.Game.WriteSave(1),
+            cps: Math.floor(window.Game.cookiesPs - (window.Game.cookiesPs*(window.Game.cpsSucked)))
+        };
+
+        // Calc Wrinkler Cookies
+        window.Game.wrinklers.forEach(e => {
+            save.wrinkler += e.sucked;
+        });
+        save.wrinkler = Math.floor(save.wrinkler);
+
+        this.api.putSave(save)
+            .then(()=>{
+                this.showMessage("Game was uploaded :)");
+            })
+            .catch(()=>{
+                this.showMessage("Error on uploading :/");
+            });
+    }
+
+    load(saveString: string) {
+        window.Game.LoadSave(saveString);
+    }
+
+    auto(interval: number) {
+        if (this.intervalId == -1) {
+            this.intervalId = setInterval(()=>this.upload, interval);
+            this.upload();
+        }
+        else {
+            clearInterval(this.intervalId);
+        }
+    }
+
+    onKeyDown(e: KeyboardEvent) : void {
+        if (e.ctrlKey &&
+            (e.keyCode === 67 ||
+                e.keyCode === 86 ||
+                e.keyCode === 85 ||
+                e.keyCode === 117)) {
+            this.upload();
+            e.preventDefault();
+        }
+    }
+
+    onMessage(ev: MessageEvent) : void {
+        try {
+            let data = JSON.parse( ev.data );
+            if (data.cccCommand) {
+                switch (data.cccCommand) {
+                    case "load":
+                        if (data.statBase) {
+                            this.load(data.statBase);
+                        }
+                        break;
+                    case "upload":
+                        this.upload();
+                        break;
+                    case "auto":
+                        if (data.interval) {
+                            this.auto(data.interval);
+                        }
+                        break;
+                    default:
+                        console.error("CCC_Inject Wrong Command", data);
+                }
+            }
+        }
+        catch (e) {
+            // Ignore
+        }
+    }
+}
+
+window.cccEmbedd = new CCCEmbeddedFeatures();

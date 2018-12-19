@@ -1,61 +1,23 @@
-# Chrome Extension TypeScript Starter
+# Cookie Clicker Cloud
 
-[![Build Status](https://travis-ci.org/chibat/chrome-extension-typescript-starter.svg?branch=master)](https://travis-ci.org/chibat/chrome-extension-typescript-starter)
+Cookie Clicker Cloud is an Webextension which allows you to sync your CookieClicker game with other browsers and to backup your savegame.
+You can save as many games you want :)
 
-Chrome Extension, TypeScript and Visual Studio Code
+CCC is free to use and will stay free. You savegame is located on an own server, where nobody has access.
 
-## Prerequisites
+An free account is required for use.
 
-* [node + npm](https://nodejs.org/) (Current Version)
+This is a free time project.
 
-## Option
+## Verzeichnisse
+|Ordername|Beschreibung|
+|---|---|
+|/build_tools|Hier liegen JS Dateien, welche zum Bauen der App verwendet werden|
+|/content|Hier liegen statische Dateien wie HTML, Bilder etc. welche in die App rein kopiert werden|
+|/dist|Das fertige Plugin liegt nach dem Bauen hier|
+|/src|Hier liegen dynamische Dateien, welche beim Bauen genutzt werden z.B. Typescript Quellen oder Sass Dateien|
+|/webpack|Hier liegen WebPack Konfigurationen|
+|/manifest.json|Die Extention Manifest|
 
-* [Visual Studio Code](https://code.visualstudio.com/)
-
-## Includes the following
-
-* TypeScript
-* Webpack
-* Moment.js
-* jQuery
-* Example Code
-    * Chrome Storage
-    * Options Version 2
-    * content script
-    * count up badge number
-    * background
-
-## Project Structure
-
-* src: TypeScript source files
-* dist: Chrome Extension directory
-* dist/js: Generated JavaScript files
-
-## Setup
-
-```
-npm install
-```
-
-## Import as Visual Studio Code project
-
-...
-
-## Build in watch mode
-
-### terminal
-
-```
-npm run build
-```
-
-### Visual Studio Code
-
-Run watch mode.
-
-type `Ctrl + Shift + B`
-
-## Load extension to chrome
-
-Load `dist` directory
-
+## TODO:
+Vor Release beim Server Save auf JSON umstellen!
