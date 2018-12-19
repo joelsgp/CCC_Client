@@ -1,6 +1,6 @@
-import { ErrorResponse } from "../apiTypes/PlainResponse";
-import { CCCEnv } from "./CCCEnv";
-import { getAlert, scrollTo } from "./CCCUtils";
+import { ErrorResponse } from "../../apiTypes/PlainResponse";
+import { CCCEnv } from "../CCCEnv";
+import { getAlert, scrollTo } from "../CCCUtils";
 import moment = require("moment");
 import * as $ from "jquery";
 

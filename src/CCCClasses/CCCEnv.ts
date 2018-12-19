@@ -1,10 +1,12 @@
 import { CCCAPI } from "./CCCAPI";
 import { EventHandler } from "./EventHandler";
 import { SmallRouter } from "./SmallRouter";
-import { CookieColorParser } from "./CookieColorParser";
+import { CookieColorParser } from "./helpers/CookieColorParser";
 import { CCCAPIInformation, HeaderMap } from "./CCCAPIInformation";
 import { CCCSettings } from "./CCCSettings";
-import { IErrorResolver, ErrorResolver } from "./ErrorResolver";
+import { IErrorResolver, ErrorResolver } from "./helpers/ErrorResolver";
+import { scrollTo, getAlert, AlertTypes } from "./CCCUtils";
+import * as $ from "jquery";
 
 export interface CCCEnvDom {
     menu: JQuery;
@@ -17,9 +19,7 @@ export interface StringKeyObject {
 }
 
 export class CCCEnv extends EventHandler implements CCCAPIInformation {
-    token: string | null;
     version: string;
-    baseUrl: string = "https://cc.timia2109.com/v2.php";
     browser: "C" | "F" | "O" | "0" = "0";
     api: CCCAPI;
     router: SmallRouter;
@@ -32,7 +32,6 @@ export class CCCEnv extends EventHandler implements CCCAPIInformation {
         super();
         this.domElements = dom;
         this.errorResolver = new ErrorResolver(this);
-        this.token = null;
         this.api = new CCCAPI(this);
         this.api.onMotD = ()=>this.onMessageOfTheDay;
         this.router = new SmallRouter(dom.container, dom.menu, this);
@@ -56,6 +55,14 @@ export class CCCEnv extends EventHandler implements CCCAPIInformation {
             this.browser = "0";
     }
 
+    get token() : string {
+        return this.settings.get("token");
+    }
+
+    get baseUrl() : string {
+        return this.settings.get("url");
+    }
+
     onMessageOfTheDay(motd: string) : void {
         this.domElements.motd_area.text(motd);
     }
@@ -74,20 +81,28 @@ export class CCCEnv extends EventHandler implements CCCAPIInformation {
     }
 
     login(token: string) {
-        chrome.storage.local.set({token: token});
-        this.token = token;
+        this.settings.set("token", token);
+        this.settings.save();
     }
 
     plainLogout() : void {
-        chrome.storage.local.remove([
-            "token"
-        ]);
-        this.token = null;
+        this.settings.restore("token");
+        this.settings.save();
     }
 
     logout() : void {
         this.plainLogout();
         this.router.open("login");
+    }
+
+    alert(alertClass: AlertTypes, headText: string, bodyText: string, removeAfter: number = 5000) : void {
+        let alert = getAlert(alertClass, headText, bodyText);
+        $("#pageContainer").prepend(alert);
+        scrollTo(alert);
+
+        if (removeAfter != -1) {
+            setTimeout(()=>alert.remove, removeAfter);
+        }
     }
 
     callOnCC(method: string, args: StringKeyObject = {}) {

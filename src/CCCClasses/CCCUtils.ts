@@ -52,8 +52,8 @@ export function scrollTo(item: JQuery) : void {
     }, 500);
 }
 
-export function confirm(title: string, message: string, yesCallback: ()=>void, noCallback: ()=>void) : void {
-    var modalBtnClick = () => {
+export function confirm(title: string, message: string, yesCallback: ()=>void, noCallback: ()=>void = undefined) : void {
+    var modalBtnClick = function() {
 		if ($(this).attr("val") == "1") {
 			if (yesCallback !== undefined)
                 yesCallback();

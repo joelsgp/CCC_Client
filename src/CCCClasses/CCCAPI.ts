@@ -48,7 +48,7 @@ export class CCCAPI {
             throw result;
         }
 
-        if (result.motd && this.onMotD) {
+        if (result.motd != undefined && this.onMotD != undefined) {
             this.onMotD(result.motd);
         }
 

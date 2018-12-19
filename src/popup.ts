@@ -7,6 +7,9 @@ import { isCookieClickerPage } from './CCCClasses/CCCUtils';
 import { Home } from './CCCClasses/subpages/Home';
 import { SaveButton, SaveRepeatButton } from './CCCClasses/subpages/SaveButtons';
 import { Login } from './CCCClasses/subpages/Login';
+import { Help } from './CCCClasses/subpages/Help';
+import { ExternalRouteEntry } from './CCCClasses/RouteEntrys/ExternalRouteEntry';
+import { Account } from './CCCClasses/subpages/Account';
 
 $(async function () {
     let env = new CCCEnv({
@@ -40,17 +43,25 @@ $(async function () {
     // Since here everything is ready and initialized for the subpages
     // Add Routes & Menu Entrys
     env.router.addRoutes([
+        // Default entrys
         new Home(),
-        new Login(),
+        new Help(),
+        new ExternalRouteEntry("Discord Community", "fab fa-discord", "https://discord.gg/Ww6b3d5"),
+        new ExternalRouteEntry("News", "fas fa-newspaper", "https://cc.timia2109.com"),
+        new Account(),
+        
+        // Click Items
         new SaveButton(env),
-        new SaveRepeatButton(env)
+        new SaveRepeatButton(env),
+
+        // Invisible Items
+        new Login(),
     ]);
 
     if (env.settings.get("token") == "") {
         env.router.open("login");
     }
     else {
-        env.token = env.settings.get("token");
         env.router.open("home");
     }
 

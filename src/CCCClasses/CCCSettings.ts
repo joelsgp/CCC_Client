@@ -17,7 +17,8 @@ settings = {
     },
     url: {
         source: "local",
-        default: "https://cc.timia2109.com/v2.php",
+        // default: "https://cc.timia2109.com/v2.php",
+        default: "http://timia2109.ddns.net/cookieclicker/v2.php",
         userChangeable: false
     },
     browserlabel: {
@@ -66,6 +67,12 @@ export class CCCSettings {
         return this.settings.get(name);
     }
 
+    restore(name: string) : string {
+        let defaultVal = settings[name].default;
+        this.set(name, defaultVal);
+        return defaultVal;
+    }
+
     private getLocalKeys(): string[] {
         let locals = [];
 
@@ -95,7 +102,7 @@ export class CCCSettings {
         let localEntrys = {};
         let syncEntrys = {};
 
-        this.changes.forEach((k, v) => {
+        this.changes.forEach((v,k) => {
             if (settings[k].source == "local") {
                 localEntrys[k] = v;
             }

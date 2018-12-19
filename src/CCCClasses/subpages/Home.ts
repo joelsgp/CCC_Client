@@ -2,8 +2,9 @@ import { InternalRouteEntry } from "../RouteEntrys/InternalRouteEntry";
 import { CCCEnv } from "../CCCEnv";
 import { confirm, getLoadingSpinner } from "../CCCUtils";
 import moment = require("moment");
-import { GetGameAttrModes } from "../GameAttrModes";
+import { GetGameAttrModes, getCurrentAttrMode } from "../helpers/GameAttrModes";
 import * as $ from "jquery";
+import { getComparators } from "../helpers/CCCSaveSorter";
 
 export class Home extends InternalRouteEntry {
 
@@ -31,37 +32,6 @@ export class Home extends InternalRouteEntry {
             }
         };
 
-        let sorters = [
-            {
-                label: "Time",
-                handler: (a, b) => b.time - a.time,
-            },
-            {
-                label: "Cookies",
-                handler: (a, b) => b.time - a.time
-            },
-            {
-                label: "Lumps",
-                handler: (a, b) => b.lumps - a.time
-            },
-            {
-                label: "CpS",
-                handler: (a, b) => b.cps - a.cps
-            },
-            {
-                label: "Name",
-                handler: (a, b) => a.name.localeCompare(b.name)
-            },
-            {
-                label: "Browserlabel",
-                handler: (a, b) => {
-                    if (!a.browserlabel) { return -1; }
-                    if (!b.browserlabel) { return 1; }
-                    a.browserlabel.localeCompare(b.browserlabel)
-                }
-            }
-        ];
-
         let selectedSorter = {
             get: function (): number {
                 return Number(env.settings.get("sorter"));
@@ -69,9 +39,6 @@ export class Home extends InternalRouteEntry {
             set: function (v: number) {
                 env.settings.set("sorter", v.toString());
                 showSaveData(cache.load());
-            },
-            getSortHandler: function () {
-                return sorters[selectedSorter.get()].handler;
             }
         };
 
@@ -82,10 +49,11 @@ export class Home extends InternalRouteEntry {
         let buildSortButtons = function () {
             let target = $("#bodySorterButton");
             target.html("");
-            for (let i = 0; i < sorters.length; i++) {
+            let comps = getComparators();
+            for (let i = 0; i < comps.length; i++) {
                 let button = $('<button class="dropdown-item">');
                 button.attr("data-sorter", i)
-                    .text(sorters[i].label)
+                    .text(comps[i].label)
                     .click(useSortButton)
                     .appendTo(target);
             }
@@ -106,92 +74,11 @@ export class Home extends InternalRouteEntry {
             var card = $($(this).closest(".card"));
             var savename = card.attr("savename");
             confirm("Delete", "Are you sure?", async () => {
+                debugger;
                 await env.api.deleteSave(savename);
                 loadSaves();
             }, () => { });
         };
-
-        // Name of Handler: HandlerCallback(targetBody, save, cookiesObj)
-        var attrShowHandler = {
-            Table: function (target, save, cookiesObj) {
-                let table = $('<table class="table table-sm infoTable">');
-
-                var createListItem = function (title, item) {
-                    var badge = $("<span>")
-                        .addClass("badge")
-                        .addClass("badge-info")
-                        .text(item);
-
-                    $("<tr>")
-                        .append(
-                            $("<td>")
-                                .text(title)
-                        )
-                        .append(
-                            $("<td>").append(badge)
-                        )
-                        .appendTo(table);
-                };
-
-                createListItem("Cookies", cookiesObj.value);
-
-                if (save.cps > 0) {
-                    let cpsObj = env.colorParser.parse(save.cps);
-                    createListItem("CpS", cpsObj.value);
-                }
-
-                if (save.wrinkler > 0) {
-                    var wrinklerObj = env.colorParser.parse(save.wrinkler);
-                    createListItem("Wrinkler", wrinklerObj.value);
-                }
-
-                if (save.lumps > 0) {
-                    var lumpsObj = env.colorParser.parse(save.lumps);
-                    createListItem("Sugar Lumps", lumpsObj.value);
-                }
-
-                if (save.browserlabel) {
-                    createListItem("Computer", save.browserlabel);
-                }
-
-                createListItem("Last update", moment(save.time * 1000).format("LLL"));
-
-                target.html(table);
-            },
-            Slim: function (target, save, cookiesObj) {
-                let badge = function (text) {
-                    target.append(
-                        $("<span>")
-                            .addClass("badge")
-                            .addClass("badge-info")
-                            .text(text)
-                    );
-                }
-
-                badge(cookiesObj.value + " cookies");
-
-                if (save.cps > 0) {
-                    let cpsObj = env.colorParser.parse(save.cps);
-                    badge(cpsObj.value + " CpS");
-                }
-
-                if (save.wrinkler > 0) {
-                    var wrinklerObj = env.colorParser.parse(save.wrinkler);
-                    badge(wrinklerObj.value + " cookies in Wrinkler");
-                }
-
-                if (save.lumps > 0) {
-                    var lumpsObj = env.colorParser.parse(save.lumps);
-                    badge(lumpsObj.value + " sugar lumps");
-                }
-
-                if (save.browserlabel) {
-                    badge("Computer: " + save.browserlabel);
-                }
-
-                badge("Last update on " + moment(save.time * 1000).format("LLL"));
-            }
-        }
 
         var createSaveCard = function (save) {
             var colorObj = env.colorParser.parse(save.cookies);
@@ -206,7 +93,7 @@ export class Home extends InternalRouteEntry {
             $(".card-title", card).text(env.colorParser.backeryName(save.name));
 
             let target = $(".card-text", card);
-            attrShowHandler[GetGameAttrModes()[selectedSorter.get()].name](target, save, colorObj);
+            getCurrentAttrMode(env).createElements(target, save, colorObj, env);
 
             $("#savePanel").append(card);
             $(".btnLoad", card).click(onLoadClick);
@@ -215,7 +102,9 @@ export class Home extends InternalRouteEntry {
 
         var showSaveData = function (d) {
             $("#savePanel").html(null);
-            d.games.sort(selectedSorter.getSortHandler());
+            d.games.sort(
+                getComparators()[ selectedSorter.get() ].compare
+            );
             for (var i = 0; i < d.games.length; i++) {
                 createSaveCard(d.games[i]);
             }
