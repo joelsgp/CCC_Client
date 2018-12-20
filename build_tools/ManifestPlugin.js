@@ -8,9 +8,8 @@ const path = require("path");
 
 class ManifestPlugin {
 
-    constructor(manifestPath, outPath) {
+    constructor(manifestPath) {
         this.manifestPath = path.resolve( __dirname, manifestPath );
-        this.outPath = path.resolve( __dirname, outPath );
     }
 
     addForDebugManifest(manifest) {
@@ -21,12 +20,15 @@ class ManifestPlugin {
     }
 
     apply(compiler) {
+        const path = require("path");
 
         let manifestContent = JSON.parse( fs.readFileSync(this.manifestPath, "utf-8") );
 
         if (compiler.options.mode == "development") {
             manifestContent = this.addForDebugManifest(manifestContent);
         }
+
+        this.outPath = path.join(compiler.options.output.path, "manifest.json");
 
         fs.writeFileSync(this.outPath, JSON.stringify(manifestContent, null, 4), "utf-8");
     }

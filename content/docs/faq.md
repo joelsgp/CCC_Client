@@ -5,7 +5,7 @@ CookieClickerCloud (or CCC) is a free service by [Tim Ittermann](https://timia21
 ### Option 1: Popup
 Open the popup on the right side of the Omnibox (or in the menu) and login if you're not already logged in. If you're on Cookie Clicker you only have to press on _save game_ and your game will be uploaded. If you are too lazy for clicking every minute you can click the _Save all 5 minutes_ Button and it will uploaded all 5 mins (or until you reload the page).
 ### Option 2: Shortcut
-After you have logged in, you can use the Shortcut **CTRL+U** on CookieClicker to upload this game directly.
+After you have logged in, you can use the Shortcut `CTRL`+`U` on CookieClicker to upload this game directly.
 
 ## How do I create an account?
 Click on register and create an account. It's free and no mail is necessary.
@@ -33,6 +33,8 @@ You can't do anything, because I don't save mail addresses or something else. Bu
 If you have great ideas how I can make CCC better then write me on the [i{fab fa-discord} Discord Group](https://discord.gg/Ww6b3d5).
 
 I'm happy about every feedback :)
+
+## What are 
 
 ## Donation
 ### Why donate?

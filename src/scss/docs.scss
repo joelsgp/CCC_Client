@@ -1,0 +1,16 @@
+@import "~bootstrap/scss/bootstrap";
+
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-free/scss/brands.scss';
+@import '~@fortawesome/fontawesome-free/scss/solid.scss';
+
+.scrollspy-example-2 {
+    position: relative;
+    height: 90vh;
+    overflow: auto;
+}
+
+img {
+    width: 100%;
+}

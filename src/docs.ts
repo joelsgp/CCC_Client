@@ -1,4 +1,9 @@
-function loadContent(html) {
+import * as $ from "jquery";
+import "bootstrap";
+import * as Showdown from "showdown";
+import Axios from "axios";
+
+function loadContent(html: string) {
     var content = $("#content");
     var menu = $("#menu");
     content.html(html);
@@ -43,6 +48,7 @@ function loadContent(html) {
     });
 }
 
+// Extention to Import FontAwesome things (with i{ICON})
 var mdExtFA = {
     type: "lang",
     regex: /i\{(.+)\}/gm,
@@ -52,16 +58,11 @@ var mdExtFA = {
     }
 };
 
-$(document).ready(function () {
-    var converter = new showdown.Converter({ extensions: [mdExtFA] });
+$(document).ready(async ()=> {
+    var converter = new Showdown.Converter({ extensions: [mdExtFA] });
     var url = new URL(location.href);
     var file = url.searchParams.get("f") + ".md";
-    $.ajax({
-        url: file,
-        dataType: "text",
-        contentType: "plain/text"
-    })
-        .done(function (d) {
-            loadContent(converter.makeHtml(d));
-        });
+    
+    let content = await Axios.get(file);
+    loadContent( converter.makeHtml(content.data) );
 });

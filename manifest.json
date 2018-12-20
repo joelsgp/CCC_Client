@@ -12,6 +12,13 @@
         "default_icon": "imgs/Logo48.png",
         "default_popup": "popup.html"
     },
+    "background": {
+        "scripts": [
+            "js/vendor.js",
+            "js/background.js"
+        ],
+        "persistent": false
+    },
     "content_scripts": [
         {
             "matches": [
@@ -32,7 +39,10 @@
     ],
     "web_accessible_resources": [
         "js/vendor.js",
-        "js/inject_cc.js"
+        "js/inject_cc.js",
+        "js/style.js",
+        "js/docs.js",
+        "docs/*"
     ],
     "short_name": "CCC"
 }

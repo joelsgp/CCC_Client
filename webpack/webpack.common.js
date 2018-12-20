@@ -2,23 +2,18 @@ const webpack = require("webpack");
 const path = require('path');
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const ManifestPlugin = require("../build_tools/ManifestPlugin");
-const fs = require("fs");
-
-const OUTPUT = path.join( __dirname, "../dist" );
-
-if (!fs.existsSync(OUTPUT)) {
-    fs.mkdirSync(OUTPUT);
-}
 
 module.exports = {
     entry: {
         popup: path.join(__dirname, '../src/popup.ts'),
         content_script_cc: path.join(__dirname, '../src/content_script_cc.ts'),
         style: path.join(__dirname, "../src/scss/style.scss"),
-        inject_cc: path.join(__dirname, "../src/inject_cc.ts")
+        inject_cc: path.join(__dirname, "../src/inject_cc.ts"),
+        docs: path.join(__dirname, "../src/docs.ts"),
+        docs_style: path.join(__dirname, "../src/scss/docs.scss"),
+        background: path.join(__dirname, "../src/background.ts")
     },
     output: {
-        path: path.join( OUTPUT, '/js' ),
         filename: '[name].js'
     },
     optimization: {
@@ -67,7 +62,7 @@ module.exports = {
         }]),
 
         // Manifest Tuner 
-        new ManifestPlugin("../manifest.json", "../dist/manifest.json"),
+        new ManifestPlugin("../manifest.json"),
 
         // exclude locale files in moment
         //new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
