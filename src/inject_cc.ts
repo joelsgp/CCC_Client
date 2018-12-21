@@ -2,9 +2,10 @@ import { CCCAPIInformation, HeaderMap } from "./CCCClasses/CCCAPIInformation";
 import { CCCSave } from "./apiTypes/CCCSave";
 import { CCCAPI } from "./CCCClasses/CCCAPI";
 
+declare var Game: any;
+
 declare global {
-    interface Window { 
-        Game: any; 
+    interface Window {
         cccEmbedd: CCCEmbeddedFeatures;
     }
 }
@@ -16,7 +17,6 @@ class CCCEmbeddedFeatures implements CCCAPIInformation {
 
     constructor() {
         this.bannerNode = document.getElementById("CCC_banner_node");
-        debugger;
         this.intervalId = -1;
         this.api = new CCCAPI(this);
         window.addEventListener("keydown", ()=>this.onKeyDown);
@@ -32,7 +32,14 @@ class CCCEmbeddedFeatures implements CCCAPIInformation {
     }
     
     get baseUrl(): string {
-        return this.bannerNode.dataset.url;
+        let url: string;
+        if (this.bannerNode.dataset.url !== undefined){
+            url = this.bannerNode.dataset.url;
+        }
+        else {
+            url = "https://cc.timia2109.com/v2.php";
+        }
+        return url;
     }
     
     getApiHeaders(): HeaderMap {
@@ -40,24 +47,26 @@ class CCCEmbeddedFeatures implements CCCAPIInformation {
     }
 
     showMessage(message: string) : void {
-        window.Game.Notify(message, "by CookieClickerCloud", 1);
+        Game.Notify(message, "by CookieClickerCloud", 1);
     }
 
     upload() : void {
         let save: CCCSave = {
-            name: window.Game.backeryName,
-            cookies: Math.floor(window.Game.cookies),
+            name: Game.bakeryName,
+            cookies: Math.floor(Game.cookies),
             wrinkler: 0,
-            lumps: Math.floor(window.Game.lumps),
-            save: window.Game.WriteSave(1),
-            cps: Math.floor(window.Game.cookiesPs - (window.Game.cookiesPs*(window.Game.cpsSucked)))
+            lumps: Math.floor(Game.lumps),
+            save: Game.WriteSave(1),
+            cps: Math.floor(Game.cookiesPs - (Game.cookiesPs*(Game.cpsSucked)))
         };
 
         // Calc Wrinkler Cookies
-        window.Game.wrinklers.forEach(e => {
+        Game.wrinklers.forEach(e => {
             save.wrinkler += e.sucked;
         });
         save.wrinkler = Math.floor(save.wrinkler);
+
+        console.log(save);
 
         this.api.putSave(save)
             .then(()=>{
@@ -69,7 +78,7 @@ class CCCEmbeddedFeatures implements CCCAPIInformation {
     }
 
     load(saveString: string) {
-        window.Game.LoadSave(saveString);
+        Game.LoadSave(saveString);
     }
 
     auto(interval: number) {

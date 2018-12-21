@@ -1,9 +1,9 @@
 @import "~bootstrap/scss/bootstrap";
 
-$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
-@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
-@import '~@fortawesome/fontawesome-free/scss/brands.scss';
-@import '~@fortawesome/fontawesome-free/scss/solid.scss';
+$fa-font-path: "~@fortawesome/fontawesome-pro/webfonts";
+@import '~@fortawesome/fontawesome-pro/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-pro/scss/brands.scss';
+@import '~@fortawesome/fontawesome-pro/scss/solid.scss';
 
 .scrollspy-example-2 {
     position: relative;

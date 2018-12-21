@@ -8,6 +8,8 @@ type StringKeyObject = {
     [key: string]: any;
 }
 
+let scriptid = 0;
+
 // CCC Bannerlink
 var bannerNode = document.createElement("div");
 bannerNode.innerHTML = '<a href="https://timia2109.com/category/ccc/" target="_blank">CCC</a>';
@@ -16,21 +18,19 @@ bannerNode.id = "CCC_banner_node";
 let settings = new CCCSettings();
 
 function injectFile(filename: string) : void {
-    debugger;
     var url = chrome.extension.getURL(filename);
-    var script = document.createElement("script")
+    var script = document.createElement("script");
     script.type = "text/javascript";
-    script.setAttribute('id','modscript_ccc');
+    script.setAttribute('id','modscript_ccc_'+(scriptid++));
     script.src = url;
     document.getElementsByTagName("head")[0].appendChild(script);
-    debugger;
 }
 
 function refreshBannerNode() {
     // TODO: Bugfix!!
-    for (let k in settings.getAllSettings()) {
-        bannerNode.dataset[k] = settings.get(k);
-    }
+    settings.getAllSettings().forEach((v, k) => {
+        bannerNode.dataset[k] = v;
+    });
 }
 
 function onChromeValueChange(changes: StringKeyObject) {
@@ -56,9 +56,11 @@ function onModsLoad(chromed) {
     }
 }
 
-window.addEventListener("load", async function () {
-    
+document.getElementById("versionNumber").addEventListener ("DOMSubtreeModified", async function () {
     await settings.load();
+
+    // Insert Node
+    document.getElementById("topBar").appendChild(bannerNode);
 
     refreshBannerNode();
     injectFile("js/vendor.js");
@@ -67,9 +69,6 @@ window.addEventListener("load", async function () {
     // Wait for changes
     chrome.storage.onChanged.addListener(onChromeValueChange);
 
-    // Insert Node
-    document.getElementById("topBar").appendChild(bannerNode);
-
     // Load mods
-    chrome.storage.local.get(["mods"], onModsLoad);
+    //chrome.storage.local.get(["mods"], onModsLoad);
 });
