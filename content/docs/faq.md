@@ -34,8 +34,6 @@ If you have great ideas how I can make CCC better then write me on the [i{fab fa
 
 I'm happy about every feedback :)
 
-## What are 
-
 ## Donation
 ### Why donate?
 

@@ -26,7 +26,7 @@ let getNameForRelease = ()=>{
     let foldername = "../ccc_"
         + getManifest().version.split(".").join("_");
     
-    return output(foldername);
+    return output(foldername)+"/js";
 };
 
 module.exports = {output, getManifest, getNameForRelease};

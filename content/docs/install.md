@@ -18,3 +18,7 @@ Upload your game by press `CTRL`+`U`(pload). A message will appear, now you find
 Check out the [i{fas fa-help-circle} FAQ](?f=faq) to get use of all features! 
 
 Or join the [i{fab fa-discord} Discord Community](https://discord.gg/Ww6b3d5).
+
+Thank you for downloading CC
+
+*~ Tim*

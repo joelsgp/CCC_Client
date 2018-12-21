@@ -1,8 +1,50 @@
-## v.2.1.0
- - Display Opts for Attrs
- - Sort Games
- - Lumps, CpS, Wrinkler calculation
- - Autoload Gamemods on CC Start
+# i{fas fa-clock} What's new? 
+## On v.2.1.0
+
+### Open this page when you update CCC
+Yes it might annoys you, but as you know, there are not so many updates. Take a look on the new features. Do you have ideas? Write them on i{fab fa-discord} Discord. I'm happy to hear about them!
+
+### Game Attributes
+Diffrent Modes to show game attributes. You can change it in the settings ( i{fas fa-user} )
+
+![Before](backeryTable.png)
+![After](backerySlim.png)
+
+### Sorting is back
+Sort your games by diffrent criterias. You might use it!
+
+![Fancy Sorting](sort.png)
+
+### Tagging more and more
+Like you can see here I include many more tags for you game
+
+![Tags](backerySlim.png)
+
+The following tags are now existing
+
+ - Cookies
+ - Cookies in Wrinkler **FIXED**
+ - Cookies per Secound
+ - Sugar Lumps
+ - Browserlabel
+ - Last Update
+
+### Autoload mods
+You like mods in Cookie Clicker? Ok! I help you to load them everytime. You can set them in the settings.
+
+### Wrinklers Cookies are now better
+Now I calculate the wrinkler cookies on a diffrent way. This should work.
+
+### [Fun] Message of the Day
+
+
+### Thank you
+Enjoy this update!
+
+*~ Tim (@timia2109)*
+
+---
+This changes are using the old format
 
 ## v.2.0.4
 ### Add:

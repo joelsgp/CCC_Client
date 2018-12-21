@@ -28,7 +28,7 @@ class ManifestPlugin {
             manifestContent = this.addForDebugManifest(manifestContent);
         }
 
-        this.outPath = path.join(compiler.options.output.path, "manifest.json");
+        this.outPath = path.join(compiler.options.output.path, "../manifest.json");
 
         fs.writeFileSync(this.outPath, JSON.stringify(manifestContent, null, 4), "utf-8");
     }

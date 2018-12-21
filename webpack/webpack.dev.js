@@ -6,6 +6,6 @@ module.exports = merge(common, {
     devtool: 'inline-source-map',
     mode: 'development',
     output: {
-        path: require("./helpers").output("../dist")
+        path: require("./helpers").output("../dist/js")
     }
 });
