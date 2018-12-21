@@ -4,5 +4,8 @@ const webpack = require('webpack');
 
 module.exports = merge(common, {
     devtool: 'inline-source-map',
-    mode: 'development'
+    mode: 'development',
+    output: {
+        path: require("./helpers").output("../dist/js")
+    }
 });

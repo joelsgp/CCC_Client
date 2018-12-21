@@ -1,4 +1,9 @@
-function loadContent(html) {
+import * as $ from "jquery";
+import "bootstrap";
+import * as Showdown from "showdown";
+import Axios from "axios";
+
+function loadContent(html: string) {
     var content = $("#content");
     var menu = $("#menu");
     content.html(html);
@@ -38,11 +43,23 @@ function loadContent(html) {
     $("h1", content).each(hLoop);
     $("h2", content).each(hLoop);
 
-    $("a", content).each(function () {
-        $(this).attr("target", "_blank");
-    });
+    $("a", content).attr("target", "_blank");
 }
 
+function showMenu(state: boolean) {
+    if (state) {
+        $("#menuContainer").removeAttr("hidden");
+        $("#contentContainer")
+            .addClass("col-sm-8");
+    }
+    else {
+        $("#menuContainer").attr("hidden", 1);
+        $("#contentContainer")
+            .removeClass("col-sm-8");
+    }
+}
+
+// Extention to Import FontAwesome things (with i{ICON})
 var mdExtFA = {
     type: "lang",
     regex: /i\{(.+)\}/gm,
@@ -52,16 +69,15 @@ var mdExtFA = {
     }
 };
 
-$(document).ready(function () {
-    var converter = new showdown.Converter({ extensions: [mdExtFA] });
+$(document).ready(async ()=> {
+    var converter = new Showdown.Converter({ extensions: [mdExtFA] });
     var url = new URL(location.href);
     var file = url.searchParams.get("f") + ".md";
-    $.ajax({
-        url: file,
-        dataType: "text",
-        contentType: "plain/text"
-    })
-        .done(function (d) {
-            loadContent(converter.makeHtml(d));
-        });
+    
+    if (url.searchParams.get("showMenu")) {
+        showMenu( url.searchParams.get("showMenu") != "1" );
+    }
+
+    let content = await Axios.get(file);
+    loadContent( converter.makeHtml(content.data) );
 });

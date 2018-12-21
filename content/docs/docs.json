@@ -1,0 +1,12 @@
+{
+    "faq": {
+        "name": "FAQ",
+        "type": "md",
+        "url": "faq.md"
+    },
+    "changelog": {
+        "name": "Changelog",
+        "type": "md",
+        "url": "changelog.md"
+    }
+}
