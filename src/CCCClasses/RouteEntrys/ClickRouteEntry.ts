@@ -24,7 +24,7 @@ export abstract class ClickRouteEntry extends RouteEntry {
         node.attr("title", this.name);
 
         $('<span class="nav-link">')
-            .click(()=>this.open)
+            .click(()=>{this.open()})
             .appendTo(node)
             .append(
                 $("<i>")

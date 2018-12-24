@@ -64,7 +64,7 @@ class CCCEmbeddedFeatures implements CCCAPIInformation {
             name: Game.bakeryName,
             cookies: Math.floor(Game.cookies),
             wrinkler: 0,
-            lumps: Math.floor(Game.lumps),
+            lumps: Game.lumps > 0 ? Math.floor(Game.lumps) : 0,
             save: Game.WriteSave(1),
             cps: Math.floor(Game.cookiesPs - (Game.cookiesPs*(Game.cpsSucked)))
         };
@@ -86,8 +86,10 @@ class CCCEmbeddedFeatures implements CCCAPIInformation {
             });
     }
 
-    load(saveString: string) {
-        Game.LoadSave(saveString);
+    async load(savename: string) {
+        let saveGame = await this.api.getSave(savename);
+        console.log(saveGame);
+        Game.LoadSave(saveGame.save);
     }
 
     auto(interval: number) {
@@ -117,8 +119,8 @@ class CCCEmbeddedFeatures implements CCCAPIInformation {
             if (data.cccCommand) {
                 switch (data.cccCommand) {
                     case "load":
-                        if (data.statBase) {
-                            this.load(data.statBase);
+                        if (data.name) {
+                            this.load(data.name);
                         }
                         break;
                     case "upload":

@@ -63,8 +63,7 @@ export class Home extends InternalRouteEntry {
             var savename = $($(this).closest(".card")).attr("savename");
 
             try {
-                let saveGame = await env.api.getSave(savename);
-                env.callOnCC("load", { statBase: saveGame.save });
+                env.callOnCC("load", { name: savename });
             } catch (e) {
                 env.errorResolver.resolveError(e);
             }

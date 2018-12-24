@@ -122,7 +122,7 @@ export class CCCEnv extends EventHandler implements CCCAPIInformation {
         let json = JSON.stringify(taskDescriptor);
 
         chrome.tabs.executeScript(null, {
-            "code": `window.postMessage('${json}')`
+            "code": `window.postMessage('${json}','*')`
         });
     }
 }

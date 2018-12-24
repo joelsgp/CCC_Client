@@ -47,7 +47,7 @@ export class CookieColorParser {
 let cookieColorDefinitions: Array<CookieColorDefinition> = [
     {
         "color": "7b1fa2",
-        "min": 0,
+        "min": -1,
         "white_textcolor": true,
         "label": ""
     },
