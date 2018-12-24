@@ -3,6 +3,11 @@
     "name": "Cookie Clicker Cloud",
     "description": "Sync your CookieClicker Game around the browsers!",
     "version": "2.1.0",
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "ccc@timia2109.com"
+        }
+    },
     "icons": {
         "16": "imgs/Logo16.png",
         "48": "imgs/Logo48.png",

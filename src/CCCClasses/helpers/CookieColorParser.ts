@@ -13,29 +13,33 @@ export interface CookieColor {
 }
 
 export class CookieColorParser {
+
+    private getCookieColor(cookies: string, index: number) : CookieColor {
+        return {
+            value: cookies,
+            background: cookieColorDefinitions[index].color,
+            textcolor: cookieColorDefinitions[index].white_textcolor ? "#fff" : "#000"
+        };
+    }
+
     parse(cookies: number): CookieColor {
         let factor = 0;
-        for (let i = cookieColorDefinitions.length - 1; i >= 0; i--) {
+        for (let i = cookieColorDefinitions.length - 1; i > 0; i--) {
             factor = Math.pow(10, cookieColorDefinitions[i].min);
-            if (cookies > factor) {
+            if (cookies >= factor) {
                 let value : string;
                 if (cookieColorDefinitions[i].replace) {
                     value = cookieColorDefinitions[i].label;
-                }
-                else if (factor == 1) {
-                    value = cookies.toFixed(0);
                 }
                 else {
                     value = (cookies / factor).toFixed(3) + cookieColorDefinitions[i].label;
                 }
 
-                return {
-                    value: value,
-                    background: "#" + cookieColorDefinitions[i].color,
-                    textcolor: (cookieColorDefinitions[i].white_textcolor) ? "#fff" : "#000"
-                };
+                return this.getCookieColor(value, i);
             }
         }
+
+        return this.getCookieColor(cookies.toString(), 0);
     }
 
     backeryName(name: string) : string {
@@ -46,103 +50,103 @@ export class CookieColorParser {
 
 let cookieColorDefinitions: Array<CookieColorDefinition> = [
     {
-        "color": "7b1fa2",
-        "min": -1,
+        "color": "#7b1fa2",
+        "min": 0,
         "white_textcolor": true,
         "label": ""
     },
     {
-        "color": "512da8",
+        "color": "#512da8",
         "min": 6,
         "white_textcolor": true,
         "label": " million"
     },
     {
-        "color": "303f9f",
+        "color": "#303f9f",
         "min": 9,
         "white_textcolor": true,
         "label": " billion"
     },
     {
-        "color": "1976d2",
+        "color": "#1976d2",
         "min": 12,
         "white_textcolor": false,
         "label": " trillion"
     },
     {
-        "color": "0097a7",
+        "color": "#0097a7",
         "min": 15,
         "white_textcolor": false,
         "label": " quadrillion"
     },
     {
-        "color": "00796b",
+        "color": "#00796b",
         "min": 18,
         "white_textcolor": true,
         "label": " quintillion"
     },
     {
-        "color": "388e3c",
+        "color": "#388e3c",
         "min": 21,
         "white_textcolor": false,
         "label": " sextillion"
     },
     {
-        "color": "689f38",
+        "color": "#689f38",
         "min": 24,
         "white_textcolor": false,
         "label": " septillion"
     },
     {
-        "color": "afb42b",
+        "color": "#afb42b",
         "min": 27,
         "white_textcolor": false,
         "label": " octillion"
     },
     {
-        "color": "fbc02d",
+        "color": "#fbc02d",
         "min": 30,
         "white_textcolor": false,
         "label": " nonillion"
     },
     {
-        "color": "ffa000",
+        "color": "#ffa000",
         "min": 33,
         "white_textcolor": false,
         "label": " decillion"
     },
     {
-        "color": "f57c00",
+        "color": "#f57c00",
         "min": 36,
         "white_textcolor": false,
         "label": " undecillion"
     },
     {
-        "color": "e64a19",
+        "color": "#e64a19",
         "min": 39,
         "white_textcolor": false,
         "label": " duodecillion"
     },
     {
-        "color": "795548",
+        "color": "#795548",
         "min": 42,
         "white_textcolor": true,
         "label": " tredecillion"
     },
     {
-        "color": "5d4037",
+        "color": "#5d4037",
         "min": 45,
         "white_textcolor": true,
         "label": " quattuordecillion"
     },
     {
-        "color": "616161",
+        "color": "#616161",
         "min": 48,
         "white_textcolor": true,
         "label": " quindecillion"
     },
     {
-        "color": "1B2631",
+        "color": "#1B2631",
         "min": 51,
         "white_textcolor": true,
         "label": "Infinity", 

@@ -32,7 +32,7 @@ class CCCEmbeddedFeatures implements CCCAPIInformation {
     private async messageOfTheDay() {
         let motd = await this.api.getMessageOfTheDay();
         Game.customTickers.push(()=>[
-            "[CCC]: " + motd.motd.content
+            motd.motd.content+"<sig>CookieClickerCloud</sig>"
         ]);
     }
 
@@ -143,3 +143,5 @@ class CCCEmbeddedFeatures implements CCCAPIInformation {
 }
 
 window.cccEmbedd = new CCCEmbeddedFeatures();
+
+console.log( chrome.runtime.getManifest() );

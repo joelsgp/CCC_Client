@@ -59,6 +59,13 @@ $(async function () {
         new Login(),
     ]);
 
+    // Firefox gets an open CC Button
+    if (env.browser == "F") {
+        env.router.addRoute(
+            new ExternalRouteEntry("Open CookieClicker", "fas fa-cookie", "http://orteil.dashnet.org/cookieclicker/")
+        );
+    }
+
     if (env.settings.get("token") == "") {
         env.router.open("login");
     }
@@ -69,4 +76,13 @@ $(async function () {
     if (localStorage.debug) {
         initDebugUtils(env.settings);
     }
+
+    // Init Popovers
+    // Menu init
+	$("[title]", $("#iconMenu")).each(function(){
+		var $this = $(this);
+		$this.data("toggle", "tooltip")
+			.data("placement", "top")
+			.tooltip();
+	});
 });

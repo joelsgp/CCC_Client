@@ -41,7 +41,7 @@ export class CCCAPI {
 
         // Kein Objekt. Kein Erfolg
         if (typeof(result) != "object") {
-            throw new Error("Connection Error");
+            throw new Error("connection");
         }
 
         // Server sagt nein

@@ -67,12 +67,19 @@
             <div id="accMods" class="collapse" data-parent="#accordionAccount">
                 <div class="card-body">
                     Autoload a mod on CC start.<br>
-                    Insert one ModUrl per line.<br>
                     Need to reload CC.<br>
-                    <textarea rows="6" class="form-control"></textarea>
-                    <button class="btn btn-success" id="accModsSaveBtn">
-                        <i class="fas fa-save"></i> Save
-                    </button>
+
+                    <div id="modsEntrysContainer"></div>
+
+                    <div class="btn-group">
+                        <button class="btn btn-default" id="addModBtn">
+                            <i class="fas fa-plus"></i> Add Mod
+                        </button>
+                        <button class="btn btn-success" id="accModsSaveBtn">
+                            <i class="fas fa-save"></i> Save
+                        </button>
+
+                    </div>
                     <br>
                 </div>
             </div>
@@ -163,6 +170,14 @@
         </div>
     </div>
 
+    <div class="input-group mb-3" id="templateLoadMod" hidden>
+        <input type="text" class="form-control modUrl" placeholder="http://urltomod.com/mod...">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+    </div>
 
 
 </div>

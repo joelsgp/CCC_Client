@@ -11,6 +11,14 @@ export class Account extends InternalRouteEntry {
         super("Account and Settings", "fas fa-user", "account");
     }
 
+    private addModEntryContainer(val: string = null): void {
+        let node = $("#templateLoadMod").clone();
+        node.removeAttr("hidden");
+        $("button", node).click(() => node.remove());
+        $("input", node).val(val);
+        $("#modsEntrysContainer").append(node);
+    }
+
     async afterDomLoad(env: CCCEnv) {
 
         // Wenn auf logout gelickt wird
@@ -41,11 +49,15 @@ export class Account extends InternalRouteEntry {
 
         // Wenn Mods gespeichert werden soll
         var onSaveModsClick = function () {
-            let mods = (<string>$("#accMods textarea").val()).split("\n");
-            for (let i = 0; i < mods.length; i++) {
-                mods[i] = mods[i].trim();
-            }
-            env.settings.set("addons", mods.join("\n"));
+            let mods = [];
+
+            $(".modUrl").each(function () {
+                if ((<string>$(this).val()).trim().length > 0) {
+                    mods.push($(this).val());
+                }
+            });
+
+            env.settings.set("addons", JSON.stringify(mods));
             env.settings.save();
 
             env.alert("alert-success", "Save!", "Your mods are saved! Please reload CC");
@@ -143,6 +155,7 @@ export class Account extends InternalRouteEntry {
         $("#exportData").click(exportDataClick);
         $("#accSaveBrowserLabel").click(saveBrowserLabel);
         $("#accModsSaveBtn").click(onSaveModsClick);
+        $("#addModBtn").click(() => this.addModEntryContainer());
 
         // Load AttrModes
         let attrModes = GetGameAttrModes();
@@ -155,10 +168,15 @@ export class Account extends InternalRouteEntry {
                 .append("<br>");
         }
         $('input:radio[name="inpAttrMode"]').change(onAttrBoxChecked);
-        
+
         // Load existing data
         $("#inpBrowserLabel").val(env.settings.get("browserlabel"));
         $('[name="inpAttrMode"][value="' + env.settings.get("attrMode") + '"]').prop("checked", true);
-        $('#accMods textarea').val(env.settings.get("addons"));        
+
+        // Load Mods
+        let mods = JSON.parse(env.settings.get("addons"));
+        for (let mod of mods) {
+            this.addModEntryContainer(mod);
+        }
     }
 }

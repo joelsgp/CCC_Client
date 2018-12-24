@@ -30,7 +30,7 @@ settings = {
     },
     addons: {
         source: "sync",
-        default: "",
+        default: "[]",
         userChangeable: true
     },
     attrMode: {
@@ -144,8 +144,6 @@ export class CCCSettings {
                 this.settings.set(key, settings[key].default);
             }
         }
-
-        console.log("DEBUG: CCCSettings", this.settings);
 
         return true;
     }

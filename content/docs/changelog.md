@@ -22,8 +22,8 @@ Like you can see here I include many more tags for you game
 The following tags are now existing
 
  - Cookies
- - Cookies in Wrinkler **FIXED**
- - Cookies per Secound
+ - Cookies in Wrinklers **FIXED**
+ - Cookies per Secound (CpS)
  - Sugar Lumps
  - Browserlabel
  - Last Update
@@ -31,10 +31,21 @@ The following tags are now existing
 ### Autoload mods
 You like mods in Cookie Clicker? Ok! I help you to load them everytime. You can set them in the settings.
 
+![Mods](https://cc.timia2109.com/imgs/mods.png)
+
 ### Wrinklers Cookies are now better
 Now I calculate the wrinkler cookies on a diffrent way. This should work.
 
 ### [Fun] Message of the Day
+There are the new Message of the Day section inside of the popup
+
+![MotD on Popup](https://cc.timia2109.com/imgs/motd_popup.png)
+
+And on the *"news"* section on Cookie Clicker
+
+![MotD on CC](https://cc.timia2109.com/imgs/motdIngame.png)
+
+Submit your own on i{fab fa-discord} Discord!
 
 ### Internal Changes
 I rewrote the hole plugin to TypeScript using WebPack
