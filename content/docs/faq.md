@@ -45,4 +45,4 @@ To:
 You can donate over [i{fab fa-paypal} PayPal](https://paypal.me/timia2109)
 
 or over i{fab fa-bitcoin} Bitcoin ```15UFuh6UZP3GabWvZJcojuY4VYVDPSRALL```
-![BitCoin QR](btc_qr.jpg)
+![BitCoin QR](https://cc.timia2109.com/imgs/btc_qr.jpg)

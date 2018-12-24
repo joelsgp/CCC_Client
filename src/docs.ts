@@ -51,11 +51,13 @@ function showMenu(state: boolean) {
         $("#menuContainer").removeAttr("hidden");
         $("#contentContainer")
             .addClass("col-sm-8");
+        $("[data-menumode='1']").attr("hidden", 1);
     }
     else {
         $("#menuContainer").attr("hidden", 1);
         $("#contentContainer")
             .removeClass("col-sm-8");
+        $("[data-menumode='1']").removeAttr("hidden");
     }
 }
 
@@ -74,10 +76,18 @@ $(document).ready(async ()=> {
     var url = new URL(location.href);
     var file = url.searchParams.get("f") + ".md";
     
-    if (url.searchParams.get("showMenu")) {
-        showMenu( url.searchParams.get("showMenu") != "1" );
+    let menu = true;
+    if (url.searchParams.get("hideMenu")) {
+        menu = false;
     }
+    showMenu(menu);
 
     let content = await Axios.get(file);
     loadContent( converter.makeHtml(content.data) );
+
+    $("[data-menumode]").click(function(){
+        let mode = $(this).attr("data-menumode");
+
+        showMenu(mode == "1");
+    });
 });

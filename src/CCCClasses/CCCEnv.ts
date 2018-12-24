@@ -32,8 +32,14 @@ export class CCCEnv extends EventHandler implements CCCAPIInformation {
         super();
         this.domElements = dom;
         this.errorResolver = new ErrorResolver(this);
+        
         this.api = new CCCAPI(this);
-        this.api.onMotD = ()=>this.onMessageOfTheDay;
+        this.api.onMotD = (m)=>this.onMessageOfTheDay(m);
+        this.api.onUrlChange = (url) => {
+            this.settings.set("url", url);
+            this.settings.save();
+        };
+
         this.router = new SmallRouter(dom.container, dom.menu, this);
         this.colorParser = new CookieColorParser();
         this.settings = new CCCSettings();

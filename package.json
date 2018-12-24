@@ -4,8 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "watch": "webpack --config webpack/webpack.dev.js --watch",
-        "build": "webpack --config webpack/webpack.prod.js -p"
+        "watch": "webpack --config webpack/webpack.dev.js --watch --env dev",
+        "build": "webpack --config webpack/webpack.prod.js -p --env prod"
     },
     "author": "",
     "license": "MIT",

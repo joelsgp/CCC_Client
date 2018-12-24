@@ -19,12 +19,21 @@ class CCCEmbeddedFeatures implements CCCAPIInformation {
         this.bannerNode = document.getElementById("CCC_banner_node");
         this.intervalId = -1;
         this.api = new CCCAPI(this);
-        window.addEventListener("keydown", ()=>this.onKeyDown);
-        window.addEventListener("message", ()=>this.onMessage, false);
+        window.addEventListener("keydown", (e)=>this.onKeyDown(e));
+        window.addEventListener("message", (e)=>this.onMessage(e), false);
 
         if (this.token === undefined) {
             this.showMessage("Please login on CCC on the addon popup");
         }
+
+        this.messageOfTheDay();
+    }
+
+    private async messageOfTheDay() {
+        let motd = await this.api.getMessageOfTheDay();
+        Game.customTickers.push(()=>[
+            "[CCC]: " + motd.motd.content
+        ]);
     }
 
     get token(): string {

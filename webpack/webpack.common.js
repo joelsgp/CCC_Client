@@ -64,6 +64,11 @@ module.exports = {
         // Manifest Tuner 
         new ManifestPlugin("../manifest.json"),
 
+        // Replace Env
+        new webpack.NormalModuleReplacementPlugin(/(.*)-APP_TARGET(\.*)/, function(resource) {
+            resource.request = resource.request.replace(/-APP_TARGET/, `-${env}`);
+          }),
+
         // exclude locale files in moment
         //new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     ]

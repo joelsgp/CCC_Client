@@ -10,6 +10,7 @@ import { Login } from './CCCClasses/subpages/Login';
 import { Help } from './CCCClasses/subpages/Help';
 import { ExternalRouteEntry } from './CCCClasses/RouteEntrys/ExternalRouteEntry';
 import { Account } from './CCCClasses/subpages/Account';
+import { initDebugUtils } from './CCCClasses/Debug.dev';
 
 $(async function () {
     let env = new CCCEnv({
@@ -49,7 +50,7 @@ $(async function () {
         new ExternalRouteEntry("Discord Community", "fab fa-discord", "https://discord.gg/Ww6b3d5"),
         new ExternalRouteEntry("News", "fas fa-newspaper", "https://cc.timia2109.com"),
         new Account(),
-        
+
         // Click Items
         new SaveButton(env),
         new SaveRepeatButton(env),
@@ -65,4 +66,7 @@ $(async function () {
         env.router.open("home");
     }
 
+    if (localStorage.debug) {
+        initDebugUtils(env.settings);
+    }
 });

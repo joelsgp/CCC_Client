@@ -9,6 +9,12 @@ An free account is required for use.
 
 This is a free time project.
 
+## Debug features aktivieren
+Konsole öffnen und `localStorage.debug = 1` sagen
+
+## Erste Version
+18.11.2016 - v1.0
+
 ## Verzeichnisse
 |Ordername|Beschreibung|
 |---|---|

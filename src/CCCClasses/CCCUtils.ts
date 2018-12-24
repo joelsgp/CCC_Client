@@ -79,6 +79,34 @@ export function confirm(title: string, message: string, yesCallback: ()=>void, n
 	modal.modal("show");
 }
 
+export function htmlConfirm(title: string, message: JQuery, yesCallback: ()=>void, noCallback: ()=>void = undefined) : void {
+    var modalBtnClick = function() {
+		if ($(this).attr("val") == "1") {
+			if (yesCallback !== undefined)
+                yesCallback();
+		}
+		else {
+			if (noCallback !== undefined)
+                noCallback();
+		}
+		modal.modal("hide");
+	}
+
+	var modal = $("#modal");
+	$(".modal-title", modal).html(title);
+	$(".modal-body", modal).html("")
+		.append(message);
+	$("#btnYes", modal)
+		.attr("val", 1)
+		.off("click")
+		.click(modalBtnClick);
+	$("#btnNo", modal)
+		.attr("val", 0)
+		.off("click")
+		.click(modalBtnClick);
+	modal.modal("show");
+}
+
 export function getCurrentTabURL() : Promise<string> {
 	return new Promise((resolve, reject)=>{
 		chrome.tabs.query({

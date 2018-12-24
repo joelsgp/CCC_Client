@@ -7,6 +7,7 @@ type HTTPMethod = "GET"|"POST"|"DELETE"|"OPTIONS";
 export class CCCAPI {
     private apiInformation: CCCAPIInformation;
     onMotD: (motd: string) => void;
+    onUrlChange: (url: string) => void;
 
     constructor(apiInformation: CCCAPIInformation) {
         this.apiInformation = apiInformation;
@@ -50,6 +51,11 @@ export class CCCAPI {
 
         if (result.motd != undefined && this.onMotD != undefined) {
             this.onMotD(result.motd);
+        }
+
+        if (result.url != undefined && this.onUrlChange != undefined) {
+            this.onUrlChange(result.url);
+            return await this.request(endpoint, method, body, json);
         }
 
         return result;
@@ -98,6 +104,10 @@ export class CCCAPI {
 
     getUser() {
         return this.request("/user", "GET");
+    }
+
+    getMessageOfTheDay() {
+        return this.request("/motd", "GET");
     }
 
     deleteUser(password: string) : Promise<any> {

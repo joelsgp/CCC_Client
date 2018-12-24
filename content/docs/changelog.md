@@ -1,5 +1,4 @@
-# i{fas fa-clock} What's new? 
-## On v.2.1.0
+# i{fas fa-clock} What's new on v.2.1.0
 
 ### Open this page when you update CCC
 Yes it might annoys you, but as you know, there are not so many updates. Take a look on the new features. Do you have ideas? Write them on i{fab fa-discord} Discord. I'm happy to hear about them!
@@ -7,18 +6,18 @@ Yes it might annoys you, but as you know, there are not so many updates. Take a 
 ### Game Attributes
 Diffrent Modes to show game attributes. You can change it in the settings ( i{fas fa-user} )
 
-![Before](backeryTable.png)
-![After](backerySlim.png)
+![Before](https://cc.timia2109.com/imgs/backeryTable.png)
+![After](https://cc.timia2109.com/imgs/backerySlim.png)
 
 ### Sorting is back
 Sort your games by diffrent criterias. You might use it!
 
-![Fancy Sorting](sort.png)
+![Fancy Sorting](https://cc.timia2109.com/imgs/sort.png)
 
 ### Tagging more and more
 Like you can see here I include many more tags for you game
 
-![Tags](backerySlim.png)
+![Tags](https://cc.timia2109.com/imgs/backerySlim.png)
 
 The following tags are now existing
 
@@ -37,6 +36,8 @@ Now I calculate the wrinkler cookies on a diffrent way. This should work.
 
 ### [Fun] Message of the Day
 
+### Internal Changes
+I rewrote the hole plugin to TypeScript using WebPack
 
 ### Thank you
 Enjoy this update!

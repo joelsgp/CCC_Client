@@ -1,3 +1,5 @@
+import { StringKeyObject } from "./CCCEnv";
+
 interface CCCSettingEntrys {
     [key: string]: {
         source: "sync" | "local",
@@ -56,6 +58,8 @@ export class CCCSettings {
 
         this.settings = new Map();
         this.changes = new Map();
+
+        chrome.storage.onChanged.addListener((e)=>this.onChromeValueChange(e));
     }
 
     set(name: string, val: string): void {
@@ -71,6 +75,13 @@ export class CCCSettings {
         let defaultVal = settings[name].default;
         this.set(name, defaultVal);
         return defaultVal;
+    }
+
+    private onChromeValueChange(changes: StringKeyObject) {
+        for (var i in changes) {
+            this.settings.set(i, changes[i].newValue);
+            this.changes.delete(i);
+        }
     }
 
     private getLocalKeys(): string[] {
