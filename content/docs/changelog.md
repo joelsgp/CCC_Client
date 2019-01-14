@@ -4,7 +4,7 @@
 Yes it might annoys you, but as you know, there are not so many updates. Take a look on the new features. Do you have ideas? Write them on i{fab fa-discord} Discord. I'm happy to hear about them!
 
 ### Game Attributes
-Diffrent Modes to show game attributes. You can change it in the settings ( i{fas fa-user} )
+Diffrent modes to show game attributes. You can change it in the settings ( i{fas fa-user} )
 
 ![Before](https://cc.timia2109.com/imgs/backeryTable.png)
 ![After](https://cc.timia2109.com/imgs/backerySlim.png)
@@ -15,11 +15,11 @@ Sort your games by diffrent criterias. You might use it!
 ![Fancy Sorting](https://cc.timia2109.com/imgs/sort.png)
 
 ### Tagging more and more
-Like you can see here I include many more tags for you game
+As you can see here, I included many more tags for your game.
 
 ![Tags](https://cc.timia2109.com/imgs/backerySlim.png)
 
-The following tags are now existing
+The following tags now exist:
 
  - Cookies
  - Cookies in Wrinklers **FIXED**
@@ -29,26 +29,26 @@ The following tags are now existing
  - Last Update
 
 ### Autoload mods
-You like mods in Cookie Clicker? Ok! I help you to load them everytime. You can set them in the settings.
+You like mods in Cookie Clicker? Ok! I'll help you to load them everytime. You can set them in the settings.
 
 ![Mods](https://cc.timia2109.com/imgs/mods.png)
 
 ### Wrinklers Cookies are now better
 Now I calculate the wrinkler cookies on a diffrent way. This should work.
 
-### [Fun] Message of the Day
-There are the new Message of the Day section inside of the popup
+### [Fun] Message of the day
+There is a new area called "message of the Day" inside the popup.
 
 ![MotD on Popup](https://cc.timia2109.com/imgs/motd_popup.png)
 
-And on the *"news"* section on Cookie Clicker
+And on the *"news"* area on Cookie Clicker
 
 ![MotD on CC](https://cc.timia2109.com/imgs/motdIngame.png)
 
 Submit your own on i{fab fa-discord} Discord!
 
 ### Internal Changes
-I rewrote the hole plugin to TypeScript using WebPack
+I rewrote the hole plugin in TypeScript using WebPack
 
 ### Thank you
 Enjoy this update!
@@ -60,7 +60,7 @@ This changes are using the old format
 
 ## v.2.0.4
 ### Add:
- - You can set a label now for your computer, to see which computer last upload a save
+ - You can set a label for your computer now, to see which computer uploaded a game the last.
 
 ## v.2.0.3
 ### Add:
@@ -68,8 +68,8 @@ This changes are using the old format
  - You can delete your account
 
 ### Changes:
- - Better Menu
- - Move Upload Buttons to Menu
+ - Better menu
+ - Move upload buttons to menu
 
 ### Bugfixes:
  - Auto-Upload
@@ -79,7 +79,7 @@ This changes are using the old format
  - New UI
  - Press CTRL + U on CookieClicker for upload without opening the Add-On!
  - Account Tab
- - Remove Notifications
+ - Remove notifications
 
 ### Internal Changes:
  - Using JQuery 3.2.1
