@@ -53,8 +53,8 @@ export class CCCAPI {
             this.onMotD(result.motd);
         }
 
-        if (result.url != undefined && this.onUrlChange != undefined) {
-            this.onUrlChange(result.url);
+        if (result.changeAppUrl != undefined && this.onUrlChange != undefined) {
+            this.onUrlChange(result.changeAppUrl);
             return await this.request(endpoint, method, body, json);
         }
 

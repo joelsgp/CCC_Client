@@ -19,8 +19,7 @@ settings = {
     },
     url: {
         source: "local",
-        // default: "https://cc.timia2109.com/v2.php",
-        default: "http://timia2109.ddns.net/cookieclicker/v2.php",
+        default: "https://cc.timia2109.com/v2.php",
         userChangeable: false
     },
     browserlabel: {
@@ -34,13 +33,13 @@ settings = {
         userChangeable: true
     },
     attrMode: {
-        "source": "sync",
-        "default": "0",
+        source: "sync",
+        default: "0",
         userChangeable: true
     },
     sorter: {
-        "source": "sync",
-        "default": "0",
+        source: "sync",
+        default: "0",
         userChangeable: false
     }
 };

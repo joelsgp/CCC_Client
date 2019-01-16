@@ -88,7 +88,6 @@ class CCCEmbeddedFeatures implements CCCAPIInformation {
 
     async load(savename: string) {
         let saveGame = await this.api.getSave(savename);
-        console.log(saveGame);
         Game.LoadSave(saveGame.save);
     }
 
@@ -143,5 +142,3 @@ class CCCEmbeddedFeatures implements CCCAPIInformation {
 }
 
 window.cccEmbedd = new CCCEmbeddedFeatures();
-
-console.log( chrome.runtime.getManifest() );

@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "watch": "webpack --config webpack/webpack.dev.js --watch --env dev",
-        "build": "webpack --config webpack/webpack.prod.js -p --env prod"
+        "build": "webpack --config webpack/webpack.prod.js -p --env prod",
+        "release": "npm run build && node ./build_tools/PackRelease.js"
     },
     "author": "",
     "license": "MIT",
@@ -33,6 +34,7 @@
         "sass-loader": "7.1.0",
         "node-sass": "4.11.0",
         "style-loader": "0.23.1",
-        "copy-webpack-plugin": "4.6.0"
+        "copy-webpack-plugin": "4.6.0",
+        "adm-zip": "0.4.13"
     }
 }

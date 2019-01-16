@@ -43,7 +43,7 @@ There is a new area called "message of the Day" inside the popup.
 
 And on the *"news"* area on Cookie Clicker
 
-![MotD on CC](https://cc.timia2109.com/imgs/motdIngame.png)
+![MotD on CC](https://cc.timia2109.com/imgs/motd_game.png)
 
 Submit your own on i{fab fa-discord} Discord!
 

@@ -22,11 +22,13 @@ let output = (outname) => {
     return outpath;
 };
 
-let getNameForRelease = ()=>{
-    let foldername = "../ccc_"
-        + getManifest().version.split(".").join("_");
-    
-    return output(foldername)+"/js";
+let getNameForReleaseFolder = () => {
+    return "ccc_"
+    + getManifest().version.split(".").join("_");
 };
 
-module.exports = {output, getManifest, getNameForRelease};
+let getNameForRelease = ()=>{    
+    return output("../"+getNameForReleaseFolder())+"/js";
+};
+
+module.exports = {output, getManifest, getNameForRelease, getNameForReleaseFolder};
