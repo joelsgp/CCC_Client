@@ -127,3 +127,7 @@ export async function isCookieClickerPage() : Promise<boolean> {
 	let url = await getCurrentTabURL();
 	return url.indexOf("cookieclicker") != -1
 }
+
+export function getEditorUrl(savename: string) : string {
+	return "https://coderpatsy.bitbucket.io/cookies/editor.html#ccc_import="+encodeURIComponent(savename);
+}

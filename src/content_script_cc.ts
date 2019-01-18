@@ -4,10 +4,6 @@ import { CCCSettings } from "./CCCClasses/CCCSettings";
  * Background Page on CC. Runs in CCC Thread, with access to the CC DOM Tree
  */
 
-type StringKeyObject = {
-    [key: string]: any;
-}
-
 let scriptid = 0;
 
 // CCC Bannerlink
@@ -27,16 +23,9 @@ function injectFile(filename: string): void {
 }
 
 function refreshBannerNode() {
-    // TODO: Bugfix!!
     settings.getAllSettings().forEach((v, k) => {
         bannerNode.dataset[k] = v;
     });
-}
-
-function onChromeValueChange(changes: StringKeyObject) {
-    for (var i in changes) {
-        bannerNode.dataset[i] = changes[i].newValue;
-    }
 }
 
 function loadMods(settings: CCCSettings) {
@@ -61,11 +50,11 @@ document.getElementById("versionNumber").addEventListener("DOMSubtreeModified", 
     document.getElementById("topBar").appendChild(bannerNode);
 
     refreshBannerNode();
+    settings.listenOnDataChanges(true);
+    settings.on("change", refreshBannerNode);
+
     injectFile("js/vendor.js");
     injectFile("js/inject_cc.js");
-
-    // Wait for changes
-    chrome.storage.onChanged.addListener(onChromeValueChange);
 
     // Load mods
     loadMods(settings);

@@ -1,6 +1,6 @@
 import { InternalRouteEntry } from "../RouteEntrys/InternalRouteEntry";
 import { CCCEnv } from "../CCCEnv";
-import { confirm, getLoadingSpinner } from "../CCCUtils";
+import { confirm, getLoadingSpinner, getEditorUrl } from "../CCCUtils";
 import moment = require("moment");
 import { GetGameAttrModes, getCurrentAttrMode } from "../helpers/GameAttrModes";
 import * as $ from "jquery";
@@ -96,6 +96,7 @@ export class Home extends InternalRouteEntry {
 
             $("#savePanel").append(card);
             $(".btnLoad", card).click(onLoadClick);
+            $(".btnEdit", card).attr("href", getEditorUrl(save.name));
             $(".btnDelete", card).click(onDeleteClick);
         };
 

@@ -1,4 +1,5 @@
 import { StringKeyObject } from "./CCCEnv";
+import { EventHandler } from "./EventHandler";
 
 interface CCCSettingEntrys {
     [key: string]: {
@@ -44,26 +45,37 @@ settings = {
     }
 };
 
-export class CCCSettings {
+export class CCCSettings extends EventHandler {
     private cLocalStorage: ChromeStorageWrapper;
     private cSyncStorage: ChromeStorageWrapper;
 
     private settings: Map<string, string>;
     private changes: Map<string, string>;
+    private onChromeChangesListener: (data: any) => any;
 
     constructor() {
+        super();
         this.cLocalStorage = new ChromeStorageWrapper(chrome.storage.local);
         this.cSyncStorage = new ChromeStorageWrapper(chrome.storage.sync);
 
         this.settings = new Map();
         this.changes = new Map();
+        this.onChromeChangesListener = (data)=>this.onChromeValueChange(data);
+    }
 
-        chrome.storage.onChanged.addListener((e)=>this.onChromeValueChange(e));
+    listenOnDataChanges(listen: boolean = true): void {
+        if (listen) {
+            chrome.storage.onChanged.addListener(this.onChromeChangesListener);
+        }
+        else {
+            chrome.storage.onChanged.removeListener(this.onChromeChangesListener);
+        }
     }
 
     set(name: string, val: string): void {
         this.settings.set(name, val);
         this.changes.set(name, val);
+        this.notify("change", this);
     }
 
     get(name: string): string {
@@ -73,12 +85,13 @@ export class CCCSettings {
     restore(name: string) : string {
         let defaultVal = settings[name].default;
         this.set(name, defaultVal);
+        this.notify("change", this);
         return defaultVal;
     }
 
     private onChromeValueChange(changes: StringKeyObject) {
         for (var i in changes) {
-            this.settings.set(i, changes[i].newValue);
+            this.set(i, changes[i].newValue);
             this.changes.delete(i);
         }
     }
