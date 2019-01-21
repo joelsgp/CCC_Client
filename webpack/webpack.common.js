@@ -36,17 +36,6 @@ module.exports = {
                     "css-loader", // translates CSS into CommonJS
                     "sass-loader" // compiles Sass to CSS, using Node Sass by default
                 ]
-            },
-            {
-                test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        name: '[name].[ext]',
-                        outputPath: '../webfonts/',    // where the fonts will go
-                        publicPath: '../webfonts/'       // override the default path
-                    }
-                }]
             }
         ]
     },
@@ -54,7 +43,6 @@ module.exports = {
         extensions: ['.ts', '.tsx', '.js']
     },
     plugins: [
-
         // Copy plain files
         new CopyWebpackPlugin([{
             from: "content",
@@ -65,11 +53,8 @@ module.exports = {
         new ManifestPlugin("../manifest.json"),
 
         // Replace Env
-        new webpack.NormalModuleReplacementPlugin(/(.*)-APP_TARGET(\.*)/, function(resource) {
+        new webpack.NormalModuleReplacementPlugin(/(.*)-APP_TARGET(\.*)/, function (resource) {
             resource.request = resource.request.replace(/-APP_TARGET/, `-${env}`);
-          }),
-
-        // exclude locale files in moment
-        //new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+        })
     ]
 };

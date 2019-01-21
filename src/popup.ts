@@ -11,8 +11,11 @@ import { Help } from './CCCClasses/subpages/Help';
 import { ExternalRouteEntry } from './CCCClasses/RouteEntrys/ExternalRouteEntry';
 import { Account } from './CCCClasses/subpages/Account';
 import { initDebugUtils } from './CCCClasses/Debug.dev';
+import { initFA } from './CCCClasses/fontawesome';
 
 $(async function () {
+    initFA();
+
     let env = new CCCEnv({
         container: $("#pageContainer"),
         menu: $("#iconMenu"),
