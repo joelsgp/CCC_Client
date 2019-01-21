@@ -34,6 +34,10 @@
                 "js/vendor.js",
                 "js/content_script_cc.js"
             ]
+        },
+        {
+            "matches": ["https://coderpatsy.bitbucket.io/cookies/editor.html"],
+            "js": ["js/vendor.js", "js/patsyEditor.js"]
         }
     ],
     "permissions": [
