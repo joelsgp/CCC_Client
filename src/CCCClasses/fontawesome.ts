@@ -31,6 +31,7 @@ import { faEnvelope } from '@fortawesome/pro-solid-svg-icons/faEnvelope';
 import { faHeart } from '@fortawesome/pro-solid-svg-icons/faHeart';
 import { faSort } from '@fortawesome/pro-solid-svg-icons/faSort';
 import { faCloudDownloadAlt } from '@fortawesome/pro-solid-svg-icons/faCloudDownloadAlt';
+import { faEdit } from '@fortawesome/pro-solid-svg-icons/faEdit';
 import { faSignIn } from '@fortawesome/pro-solid-svg-icons/faSignIn';
 import { faPlusSquare } from '@fortawesome/pro-solid-svg-icons/faPlusSquare';
 import { faCloudUpload } from '@fortawesome/pro-solid-svg-icons/faCloudUpload';
@@ -72,6 +73,7 @@ export function initFA(): void {
         faHeart,
         faSort,
         faCloudDownloadAlt,
+        faEdit,
         faSignIn,
         faPlusSquare,
         faCloudUpload,
