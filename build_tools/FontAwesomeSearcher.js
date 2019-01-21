@@ -37,9 +37,40 @@ function readDir(dir) {
     }
 }
 
-function formatFAImports() {
+function createName(faName) {
+    let use = "fa"+faName[0].toUpperCase();
+    for (let i=1; i < faName.length; i++) {
+        if (faName[i] == "-") {
+            i++;
+            use += faName[i].toUpperCase();
+        }
+        else {
+            use += faName[i];
+        }
+    }
+    return use;
+}
+
+function formatFAImports(icons) {
+    let string = "import { library, dom } from '@fortawesome/fontawesome';";
+    let lib = [];
     
+    // fas
+    for (let icon of icons.get("fas")) {
+        let faKey = createName(icon);
+        lib.push( faKey );
+        string += `\nimport { ${faKey} } from '@fortawesome/pro-solid-svg-icons';`
+    }
+
+    //fab
+    for (let icon of icons.get("fab")) {
+        let faKey = createName(icon);
+        lib.push( faKey );
+        string += `\nimport { ${faKey} } from '@fortawesome/pro-brands-svg-icons';`;
+    }
+
+    return string+"\n\nexport function initFA(): void { library.add("+ lib.join(",") +"); }";
 }
 
 readDir( filesFolder );
-console.log( icons );
+console.log( formatFAImports(icons) );

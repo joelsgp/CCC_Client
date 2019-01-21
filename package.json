@@ -6,7 +6,8 @@
     "scripts": {
         "watch": "webpack --config webpack/webpack.dev.js --watch --env dev",
         "build": "webpack --config webpack/webpack.prod.js -p --env prod",
-        "release": "npm run build && node ./build_tools/PackRelease.js"
+        "release": "npm run build && node ./build_tools/PackRelease.js",
+        "scan": "node ./build_tools/FontAwesomeSearcher.js"
     },
     "author": "",
     "license": "MIT",
