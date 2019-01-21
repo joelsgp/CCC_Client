@@ -11,13 +11,11 @@ import { Help } from './CCCClasses/subpages/Help';
 import { ExternalRouteEntry } from './CCCClasses/RouteEntrys/ExternalRouteEntry';
 import { Account } from './CCCClasses/subpages/Account';
 import { initDebugUtils } from './CCCClasses/Debug.dev';
-
-// Test
-import {libary, dom} from "@fortawesome/fontawesome-pro";
-import { faUser } from "@fortawesome/fontawesome-pro";
-libary.add( faUser );
+import { initFA } from './CCCClasses/fontawesome';
 
 $(async function () {
+    initFA();
+
     let env = new CCCEnv({
         container: $("#pageContainer"),
         menu: $("#iconMenu"),

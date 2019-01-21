@@ -1,7 +1,10 @@
+/*
+ *  Search all FontAwesome Icons that I use in this project and generate the imports in ~/src/CCCClasses/fontawesome.ts
+ *  Should run as first task of building 
+ */
+
 const fs = require("fs");
 const path = require("path");
-
-let filesFolder = path.join("..", "content");
 
 // string => Set<string>
 // fas => [user, cloud]
@@ -52,25 +55,29 @@ function createName(faName) {
 }
 
 function formatFAImports(icons) {
-    let string = "import { library, dom } from '@fortawesome/fontawesome';";
+    let string = "import { library, icon, dom } from '@fortawesome/fontawesome-svg-core';";
     let lib = [];
     
     // fas
     for (let icon of icons.get("fas")) {
         let faKey = createName(icon);
         lib.push( faKey );
-        string += `\nimport { ${faKey} } from '@fortawesome/pro-solid-svg-icons';`
+        string += `\nimport { ${faKey} } from '@fortawesome/pro-solid-svg-icons/${faKey}';`
     }
 
     //fab
     for (let icon of icons.get("fab")) {
         let faKey = createName(icon);
         lib.push( faKey );
-        string += `\nimport { ${faKey} } from '@fortawesome/pro-brands-svg-icons';`;
+        string += `\nimport { ${faKey} } from '@fortawesome/free-brands-svg-icons/${faKey}';`;
     }
 
-    return string+"\n\nexport function initFA(): void { library.add("+ lib.join(",") +"); }";
+    return fs.readFileSync( path.join("build_tools", "faHeader.txt"), "utf-8")+string+"\n\nexport function initFA(): void {\n    library.add("+ lib.join(",\n        ") +"\n    );\n"+
+        "    dom.watch();\n}";
 }
 
-readDir( filesFolder );
-console.log( formatFAImports(icons) );
+readDir( path.resolve("content") );
+readDir( path.resolve("src") );
+let src = formatFAImports(icons);
+
+fs.writeFileSync( path.join("src", "CCCClasses", "fontawesome.ts"), src, "utf-8" );

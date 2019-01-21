@@ -2,6 +2,7 @@ import * as $ from "jquery";
 import "bootstrap";
 import * as Showdown from "showdown";
 import Axios from "axios";
+import { initFA } from "./CCCClasses/fontawesome";
 
 function loadContent(html: string) {
     var content = $("#content");
@@ -72,6 +73,8 @@ var mdExtFA = {
 };
 
 $(document).ready(async ()=> {
+    initFA();
+
     var converter = new Showdown.Converter({ extensions: [mdExtFA] });
     var url = new URL(location.href);
     var file = url.searchParams.get("f") + ".md";
