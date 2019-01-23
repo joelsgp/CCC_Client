@@ -51,6 +51,7 @@
         "js/inject_cc.js",
         "js/style.js",
         "js/docs.js",
+        "patsyEditor.css",
         "docs/*"
     ],
     "short_name": "CCC"

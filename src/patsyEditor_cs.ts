@@ -72,6 +72,21 @@ async function load(name: string) : Promise<void> {
 
     // [0] bc sandboxing
     $(editorDomIds.importButton)[0].click();
+
+    toast("Game loaded from CCC!", "sb_success");
+}
+
+function toast(text: string, type: "sb_success"|"sb_error") {
+    let item = $("<div>").text(text)
+        .appendTo("body")
+        .addClass("sb")
+        .addClass( type )
+        .addClass("sb_show");
+    
+    setTimeout(()=>{
+        item.removeClass("sb_show");
+        item.remove();
+    }, 3000);
 }
 
 function initCCCTools() : void {
@@ -93,6 +108,13 @@ function initCCCTools() : void {
     // Insert Button
     $(editorDomIds.uploadAfter).after(uploadButton);
     uploadButton.after($('<span>This override your game, if you not rename the backery!</span>'));
+
+    // Insert CCC CSS
+    $("head").append( 
+        $("<link>")
+            .attr("href", chrome.extension.getURL("patsyEditor.css"))
+            .attr("rel", "stylesheet")
+    );
     
     initialized = true;
 }
