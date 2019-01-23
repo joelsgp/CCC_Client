@@ -58,21 +58,23 @@ function formatFAImports(icons) {
     let string = "import { library, icon, dom } from '@fortawesome/fontawesome-svg-core';";
     let lib = [];
     
+    let fas = Array.from( icons.get("fas") ).sort();
+    let fab = Array.from( icons.get("fab") ).sort();
     // fas
-    for (let icon of icons.get("fas")) {
+    for (let icon of fas) {
         let faKey = createName(icon);
         lib.push( faKey );
         string += `\nimport { ${faKey} } from '@fortawesome/pro-solid-svg-icons/${faKey}';`
     }
 
     //fab
-    for (let icon of icons.get("fab")) {
+    for (let icon of fab) {
         let faKey = createName(icon);
         lib.push( faKey );
         string += `\nimport { ${faKey} } from '@fortawesome/free-brands-svg-icons/${faKey}';`;
     }
 
-    return fs.readFileSync( path.join("build_tools", "faHeader.txt"), "utf-8")+string+"\n\nexport function initFA(): void {\n    library.add("+ lib.join(",\n        ") +"\n    );\n"+
+    return fs.readFileSync( path.join("build_tools", "faHeader.txt"), "utf-8")+string+"\n\nexport function initFA(): void {\n    library.add("+ lib.sort().join(",\n        ") +"\n    );\n"+
         "    dom.watch();\n}";
 }
 

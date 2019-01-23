@@ -1,8 +1,9 @@
 import * as $ from 'jquery';
 import { CCCSettings } from './CCCClasses/CCCSettings';
 import { CCCAPI } from './CCCClasses/CCCAPI';
-import { CCCAPIInformation, HeaderMap } from './CCCClasses/CCCAPIInformation';
 import { CCCSave, getPlainCCCSave } from './apiTypes/CCCSave';
+import { SettingsAPIInformation } from './CCCClasses/SettingsAPIInformation';
+import { CCCTransfereListener } from './CCCClasses/transfer/CCCTransfereListener';
 (<any>window).jQuery = $;
 
 const hideToast = 5000; // 5 Sec
@@ -20,32 +21,21 @@ const editorDomIds = {
     uploadAfter: "#copyExport"
 };
 
-class EditorAPIInfo implements CCCAPIInformation {
-    settings: CCCSettings;
-
-    constructor(settings: CCCSettings) {
-        this.settings = settings;
-    }
-
-    get token(): string {
-        return this.settings.get("token");
-    }
-
-    get baseUrl(): string {
-        return this.settings.get("url");
-    }
-
-    getApiHeaders(): HeaderMap {
-        return {};
-    }
-}
-
 let initialized = false;
 
 let settings = new CCCSettings();
 settings.listenOnDataChanges();
 
-let api = new CCCAPI(new EditorAPIInfo(settings));
+let transfereListener = new CCCTransfereListener();
+transfereListener.loadListener = (command)=>{
+    let params = new URLSearchParams();
+    params.set("ccc_import", command.name);
+
+    location.hash = params.toString();
+};
+transfereListener.on();
+
+let api = new CCCAPI(new SettingsAPIInformation(settings));
 
 function getQuery() : URLSearchParams {
     return new URLSearchParams( location.hash.substring(1) );
@@ -137,3 +127,6 @@ async function prepare() : Promise<void> {
 // When DOM loaded...
 $(()=>prepare());
 window.addEventListener("hashchange", prepare);
+window.addEventListener("message", (m)=>{
+    console.log("CCC", m);
+}, false);

@@ -1,6 +1,8 @@
 import { CCCAPIInformation, HeaderMap } from "./CCCClasses/CCCAPIInformation";
 import { CCCSave } from "./apiTypes/CCCSave";
 import { CCCAPI } from "./CCCClasses/CCCAPI";
+import { CCCTransfereCommand, UploadCommand, LoadCommand, AutoCommand } from "./CCCClasses/transfer/CCCTransfereMessage";
+import { CCCTransfereListener } from "./CCCClasses/transfer/CCCTransfereListener";
 
 declare var Game: any;
 
@@ -14,13 +16,20 @@ class CCCEmbeddedFeatures implements CCCAPIInformation {
     private bannerNode: HTMLElement;
     private intervalId: number;
     private api: CCCAPI;
+    private transfereListener: CCCTransfereListener;
 
     constructor() {
         this.bannerNode = document.getElementById("CCC_banner_node");
         this.intervalId = -1;
         this.api = new CCCAPI(this);
+        
+        this.transfereListener = new CCCTransfereListener();
+        this.transfereListener.uploadListener = (c)=>this.upload(c);
+        this.transfereListener.loadListener = (c)=>this.load(c);
+        this.transfereListener.autoListener = (c)=>this.auto(c);
+        this.transfereListener.on();
+
         window.addEventListener("keydown", (e)=>this.onKeyDown(e));
-        window.addEventListener("message", (e)=>this.onMessage(e), false);
 
         if (this.token === undefined) {
             this.showMessage("Please login on CCC on the addon popup");
@@ -59,7 +68,7 @@ class CCCEmbeddedFeatures implements CCCAPIInformation {
         Game.Notify(message, "by CookieClickerCloud", 1);
     }
 
-    upload() : void {
+    upload(upload: UploadCommand) : void {
         let save: CCCSave = {
             name: Game.bakeryName,
             cookies: Math.floor(Game.cookies),
@@ -86,15 +95,15 @@ class CCCEmbeddedFeatures implements CCCAPIInformation {
             });
     }
 
-    async load(savename: string) {
-        let saveGame = await this.api.getSave(savename);
+    async load(command: LoadCommand) {
+        let saveGame = await this.api.getSave(command.name);
         Game.LoadSave(saveGame.save);
     }
 
-    auto(interval: number) {
+    auto(command: AutoCommand) {
         if (this.intervalId == -1) {
-            this.intervalId = setInterval(()=>this.upload, interval);
-            this.upload();
+            this.intervalId = setInterval(()=>this.upload, command.interval);
+            this.upload(null);
         }
         else {
             clearInterval(this.intervalId);
@@ -107,36 +116,8 @@ class CCCEmbeddedFeatures implements CCCAPIInformation {
                 e.keyCode === 86 ||
                 e.keyCode === 85 ||
                 e.keyCode === 117)) {
-            this.upload();
+            this.upload(null);
             e.preventDefault();
-        }
-    }
-
-    onMessage(ev: MessageEvent) : void {
-        try {
-            let data = JSON.parse( ev.data );
-            if (data.cccCommand) {
-                switch (data.cccCommand) {
-                    case "load":
-                        if (data.name) {
-                            this.load(data.name);
-                        }
-                        break;
-                    case "upload":
-                        this.upload();
-                        break;
-                    case "auto":
-                        if (data.interval) {
-                            this.auto(data.interval);
-                        }
-                        break;
-                    default:
-                        console.error("CCC_Inject Wrong Command", data);
-                }
-            }
-        }
-        catch (e) {
-            // Ignore
         }
     }
 }

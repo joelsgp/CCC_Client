@@ -5,6 +5,7 @@ import moment = require("moment");
 import { GetGameAttrModes, getCurrentAttrMode } from "../helpers/GameAttrModes";
 import * as $ from "jquery";
 import { getComparators } from "../helpers/CCCSaveSorter";
+import { CCCTransfereMessage } from "../transfer/CCCTransfereMessage";
 
 export class Home extends InternalRouteEntry {
 
@@ -63,7 +64,10 @@ export class Home extends InternalRouteEntry {
             var savename = $($(this).closest(".card")).attr("savename");
 
             try {
-                env.callOnCC("load", { name: savename });
+                new CCCTransfereMessage({
+                    cccCommand: "load",
+                    name: savename
+                }).sendToTab();
             } catch (e) {
                 env.errorResolver.resolveError(e);
             }

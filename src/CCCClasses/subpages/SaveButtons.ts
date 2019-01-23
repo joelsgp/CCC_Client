@@ -1,5 +1,6 @@
 import { ClickRouteEntry } from "../RouteEntrys/ClickRouteEntry";
 import { CCCEnv } from "../CCCEnv";
+import { CCCTransfereMessage } from "../transfer/CCCTransfereMessage";
 
 export class SaveButton extends ClickRouteEntry {
 
@@ -8,9 +9,9 @@ export class SaveButton extends ClickRouteEntry {
     }
 
     open(): null {
-        this.env.callOnCC(
-            "upload"
-        );
+        new CCCTransfereMessage({
+            cccCommand: "upload"
+        }).sendToTab();
         return null;
     }
 
@@ -22,12 +23,10 @@ export class SaveRepeatButton extends ClickRouteEntry {
     }
 
     open(): null {
-        this.env.callOnCC(
-            "auto", 
-            {
-                interval: 300000
-            }
-        );
+        new CCCTransfereMessage({
+            cccCommand: "auto",
+            interval: 300000
+        }).sendToTab();
         return null;
     }
 }

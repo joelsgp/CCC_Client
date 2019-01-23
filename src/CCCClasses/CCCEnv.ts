@@ -110,19 +110,4 @@ export class CCCEnv extends EventHandler implements CCCAPIInformation {
             setTimeout(()=>alert.remove, removeAfter);
         }
     }
-
-    callOnCC(method: string, args: StringKeyObject = {}) {
-        let taskDescriptor = {
-            cccCommand: method
-        };
-        
-        // Merge things
-        Object.assign(taskDescriptor, args);
-
-        let json = JSON.stringify(taskDescriptor);
-
-        chrome.tabs.executeScript(null, {
-            "code": `window.postMessage('${json}','*')`
-        });
-    }
 }

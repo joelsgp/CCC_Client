@@ -43,6 +43,7 @@
     "permissions": [
         "activeTab",
         "storage",
+        "contextMenus",
         "https://cc.timia2109.com/*",
         "http://orteil.dashnet.org/cookieclicker/*"
     ],
