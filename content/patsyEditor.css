@@ -1,16 +1,18 @@
 .sb_success {
-	background-color: #33FF66;
+  background-color: #33FF66;
+  color: black;
 }
 
 .sb_error {
 	background-color: #FF3333;
+  color: white;
 }
 
 .sb {
-  visibility: hidden;
+  font-family: "Segoe UI",Arial,sans-serif;
   min-width: 250px;
   margin-left: -125px;
-  color: #fff;
+  font-weight: bold;
   text-align: center;
   border-radius: 2px;
   padding: 16px;
@@ -19,30 +21,12 @@
   left: 50%;
   top: 30px;
   font-size: 17px;
-}
-
-.sb_show {
-  visibility: visible;
-  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  animation: fadein 0.5s, fadeout 0.5s 2.5s;
-}
-
-@-webkit-keyframes fadein {
-  from {top: 0; opacity: 0;} 
-  to {top: 30px; opacity: 1;}
+  box-shadow: 5px 5px 3px gray;
+  
+  animation: fadein 0.5s;
 }
 
 @keyframes fadein {
   from {top: 0; opacity: 0;}
   to {top: 30px; opacity: 1;}
-}
-
-@-webkit-keyframes fadeout {
-  from {top: 30px; opacity: 1;} 
-  to {top: 0; opacity: 0;}
-}
-
-@keyframes fadeout {
-  from {top: 30px; opacity: 1;}
-  to {top: 0; opacity: 0;}
 }

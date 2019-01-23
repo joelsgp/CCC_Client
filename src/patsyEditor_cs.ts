@@ -5,7 +5,9 @@ import { CCCAPIInformation, HeaderMap } from './CCCClasses/CCCAPIInformation';
 import { CCCSave, getPlainCCCSave } from './apiTypes/CCCSave';
 (<any>window).jQuery = $;
 
-let editorDomIds = {
+const hideToast = 5000; // 5 Sec
+
+const editorDomIds = {
     importField: "#importField",
     importButton: "#importButton",
     exportField: "#exportField",
@@ -62,8 +64,8 @@ function upload() : void {
 
     // Upload Save
     api.putSave(save)
-    .then(()=>alert("Game was uploaded!"))
-    .catch(()=>alert("Error while uploading to CCC"));
+    .then(()=>toast("Game was uploaded!", "sb_success"))
+    .catch(()=>toast("Error while uploading to CCC", "sb_error"));
 }
 
 async function load(name: string) : Promise<void> {
@@ -80,13 +82,11 @@ function toast(text: string, type: "sb_success"|"sb_error") {
     let item = $("<div>").text(text)
         .appendTo("body")
         .addClass("sb")
-        .addClass( type )
-        .addClass("sb_show");
+        .addClass( type );
     
     setTimeout(()=>{
-        item.removeClass("sb_show");
         item.remove();
-    }, 3000);
+    }, hideToast);
 }
 
 function initCCCTools() : void {

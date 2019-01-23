@@ -1,6 +1,6 @@
 import { InternalRouteEntry } from "../RouteEntrys/InternalRouteEntry";
 import { CCCEnv } from "../CCCEnv";
-import { getLoadingSpinner, getAlert, scrollTo } from "../CCCUtils";
+import { getLoadingSpinner } from "../CCCUtils";
 import { Validator } from "../Validator";
 import moment = require("moment");
 import { GetGameAttrModes } from "../helpers/GameAttrModes";
