@@ -7,10 +7,8 @@ module.exports = {
     entry: {
         popup: path.join(__dirname, '../src/popup.ts'),
         content_script_cc: path.join(__dirname, '../src/content_script_cc.ts'),
-        style: path.join(__dirname, "../src/scss/style.scss"),
         inject_cc: path.join(__dirname, "../src/inject_cc.ts"),
         docs: path.join(__dirname, "../src/docs.ts"),
-        docs_style: path.join(__dirname, "../src/scss/docs.scss"),
         background: path.join(__dirname, "../src/background.ts"),
         patsyEditor: path.join(__dirname, "../src/patsyEditor_cs.ts")
     },

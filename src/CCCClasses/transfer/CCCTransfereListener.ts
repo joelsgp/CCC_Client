@@ -4,38 +4,28 @@ export type LoadCommandListener = (load: LoadCommand) => void;
 export type UploadCommandListener = (upload: UploadCommand) => void;
 export type AutoCommandListener = (auto: AutoCommand) => void;
 
-export class CCCTransfereListener {
-
-    loadListener: LoadCommandListener;
-    uploadListener: UploadCommandListener;
-    autoListener: AutoCommandListener;
-
-    private listener: (listener: MessageEvent) => void;
+export abstract class CCCTransfereListener {
 
     constructor() {
-        this.listener = (m)=>this.onMessage(m);
+        window.addEventListener("message", (m)=>this.onMessage(m), false);
     }
 
-    public on() : void {
-        window.addEventListener("message", this.listener, false);
-    }
-
-    public off() : void {
-        window.removeEventListener("message", this.listener);
-    }
+    abstract load(command: LoadCommand): any;
+    abstract upload(command: UploadCommand): any;
+    abstract auto(command: AutoCommand): any;
 
     private onMessage(ev: MessageEvent) : void {
         try {
             let m = <CCCTransfereCommand> JSON.parse( ev.data );
             switch (m.cccCommand) {
                 case "load": 
-                    this.loadListener(<LoadCommand>m);
+                    this.load(<LoadCommand>m);
                     break;
                 case "upload":
-                    this.uploadListener(<UploadCommand>m);
+                    this.upload(<UploadCommand>m);
                     break;
                 case "auto":
-                    this.autoListener(<AutoCommand>m);
+                    this.auto(<AutoCommand>m);
                     break;
             }
         } catch (e){}

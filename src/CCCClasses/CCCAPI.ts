@@ -20,7 +20,7 @@ export class CCCAPI {
             headers: this.apiInformation.getApiHeaders()
         }
 
-        if (this.apiInformation.token) {
+        if (this.apiInformation.token != "") {
             requestInfo.headers["X-Token"] = this.apiInformation.token;
         }
 

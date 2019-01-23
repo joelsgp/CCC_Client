@@ -7,6 +7,7 @@ import { CCCSettings } from "./CCCSettings";
 import { IErrorResolver, ErrorResolver } from "./helpers/ErrorResolver";
 import { scrollTo, getAlert, AlertTypes } from "./CCCUtils";
 import * as $ from "jquery";
+import { SettingsAPIInformation } from "./SettingsAPIInformation";
 
 export interface CCCEnvDom {
     menu: JQuery;
@@ -18,9 +19,7 @@ export interface StringKeyObject {
     [key: string]: any;
 }
 
-export class CCCEnv extends EventHandler implements CCCAPIInformation {
-    version: string;
-    browser: "C" | "F" | "O" | "0" = "0";
+export class CCCEnv extends EventHandler {
     api: CCCAPI;
     router: SmallRouter;
     colorParser: CookieColorParser;
@@ -32,8 +31,9 @@ export class CCCEnv extends EventHandler implements CCCAPIInformation {
         super();
         this.domElements = dom;
         this.errorResolver = new ErrorResolver(this);
+        this.settings = new CCCSettings();
         
-        this.api = new CCCAPI(this);
+        this.api = new CCCAPI( new SettingsAPIInformation(this.settings) );
         this.api.onMotD = (m)=>this.onMessageOfTheDay(m);
         this.api.onUrlChange = (url) => {
             this.settings.set("url", url);
@@ -42,48 +42,10 @@ export class CCCEnv extends EventHandler implements CCCAPIInformation {
 
         this.router = new SmallRouter(dom.container, dom.menu, this);
         this.colorParser = new CookieColorParser();
-        this.settings = new CCCSettings();
-        this.setEnvVars();
-    }
-
-    private setEnvVars(): void {
-        this.version = chrome.runtime.getManifest().version;
-
-        // Browser detection
-        var browserName = navigator.userAgent;
-        if (navigator.userAgent.match(/Opera|OPR\//))
-            this.browser = 'O';
-        else if (browserName.indexOf("Chrome") != -1)
-            this.browser = "C";
-        else if (browserName.indexOf("Firefox") != -1)
-            this.browser = "F";
-        else
-            this.browser = "0";
-    }
-
-    get token() : string {
-        return this.settings.get("token");
-    }
-
-    get baseUrl() : string {
-        return this.settings.get("url");
     }
 
     onMessageOfTheDay(motd: string) : void {
         this.domElements.motd_area.text(motd);
-    }
-
-    getApiHeaders() : HeaderMap {
-        let headerMap = {
-            "X-Pluginv": this.version,
-            "X-Browser": this.browser
-        };
-        
-        if (this.settings.get("browserlabel") != "") {
-            headerMap["X-Browser-Label"] = this.settings.get("browserlabel");
-        }
-
-        return headerMap;
     }
 
     login(token: string) {

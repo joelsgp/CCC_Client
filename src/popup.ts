@@ -12,6 +12,10 @@ import { ExternalRouteEntry } from './CCCClasses/RouteEntrys/ExternalRouteEntry'
 import { Account } from './CCCClasses/subpages/Account';
 import { initDebugUtils } from './CCCClasses/Debug.dev';
 import { initFA } from './CCCClasses/fontawesome';
+import { SettingsAPIInformation } from './CCCClasses/SettingsAPIInformation';
+
+// Import Style
+require("./scss/style.scss");
 
 $(async function () {
     initFA();
@@ -23,7 +27,7 @@ $(async function () {
     });
 
     // Write Version
-    $("#version").text(env.version);
+    $("#version").text(SettingsAPIInformation.getVersion());
 
     // Scared of Firefox
     try {
@@ -63,7 +67,7 @@ $(async function () {
     ]);
 
     // Firefox gets an open CC Button
-    if (env.browser == "F") {
+    if (SettingsAPIInformation.getBrowser() == "F") {
         env.router.addRoute(
             new ExternalRouteEntry("Open CookieClicker", "fas fa-cookie", "http://orteil.dashnet.org/cookieclicker/")
         );

@@ -17,6 +17,32 @@ export class SettingsAPIInformation implements CCCAPIInformation {
     }
 
     getApiHeaders(): HeaderMap {
-        return {};
+        let data = {
+            "X-Browser": SettingsAPIInformation.getBrowser(),
+            "X-Pluginv": SettingsAPIInformation.getVersion()
+        };
+
+        if (this.settings.get("browserlabel") != "") {
+            data["X-Browser-Label"] = this.settings.get("browserlabel");
+        }
+
+        return data;
+    }
+
+    static getBrowser() : "C" | "F" | "O" | "0" {
+        // Browser detection
+        var browserName = navigator.userAgent;
+        if (navigator.userAgent.match(/Opera|OPR\//))
+            return 'O';
+        else if (browserName.indexOf("Chrome") != -1)
+            return "C";
+        else if (browserName.indexOf("Firefox") != -1)
+            return "F";
+        else
+            return "0";
+    }
+
+    static getVersion() : string {
+        return chrome.runtime.getManifest().version;
     }
 }

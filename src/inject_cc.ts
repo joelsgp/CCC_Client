@@ -12,22 +12,16 @@ declare global {
     }
 }
 
-class CCCEmbeddedFeatures implements CCCAPIInformation {
+class CCCEmbeddedFeatures extends CCCTransfereListener implements CCCAPIInformation {
     private bannerNode: HTMLElement;
     private intervalId: number;
     private api: CCCAPI;
-    private transfereListener: CCCTransfereListener;
 
     constructor() {
+        super();
         this.bannerNode = document.getElementById("CCC_banner_node");
         this.intervalId = -1;
         this.api = new CCCAPI(this);
-        
-        this.transfereListener = new CCCTransfereListener();
-        this.transfereListener.uploadListener = (c)=>this.upload(c);
-        this.transfereListener.loadListener = (c)=>this.load(c);
-        this.transfereListener.autoListener = (c)=>this.auto(c);
-        this.transfereListener.on();
 
         window.addEventListener("keydown", (e)=>this.onKeyDown(e));
 

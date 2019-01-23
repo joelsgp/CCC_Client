@@ -4,6 +4,9 @@ import * as Showdown from "showdown";
 import Axios from "axios";
 import { initFA } from "./CCCClasses/fontawesome";
 
+// Import Style
+require("./scss/docs.scss");
+
 function loadContent(html: string) {
     var content = $("#content");
     var menu = $("#menu");
