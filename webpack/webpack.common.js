@@ -49,11 +49,6 @@ module.exports = {
         }]),
 
         // Manifest Tuner 
-        new ManifestPlugin("../manifest.json"),
-
-        // Replace Env
-        new webpack.NormalModuleReplacementPlugin(/(.*)-APP_TARGET(\.*)/, function (resource) {
-            resource.request = resource.request.replace(/-APP_TARGET/, `-${env}`);
-        })
+        new ManifestPlugin("../manifest.json")
     ]
 };
