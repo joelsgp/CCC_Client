@@ -1,3 +1,6 @@
+# i{fas fa-clock} What's new on v.2.1.2
+Critical Bugfix to reneable login after server update.
+
 # i{fas fa-clock} What's new on v.2.1.0
 
 ### Open this page when you update CCC
