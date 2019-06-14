@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosAdapter, AxiosRequestConfig } from 'axios';
 import { CCCAPIInformation } from "./CCCAPIInformation";
 import { CCCSave } from '../apiTypes/CCCSave';
 
@@ -13,8 +13,8 @@ export class CCCAPI {
         this.apiInformation = apiInformation;
     }
 
-    private async request(endpoint: string, method: HTTPMethod, body?: any, json: boolean = false) : Promise<any> {
-        let requestInfo: any = {
+    private async request(endpoint: string, method: HTTPMethod, body?: any) : Promise<any> {
+        let requestInfo: AxiosRequestConfig = {
             url: this.apiInformation.baseUrl+endpoint,
             method: method,
             headers: this.apiInformation.getApiHeaders()
@@ -25,16 +25,7 @@ export class CCCAPI {
         }
 
         if (body) {
-            if (!json) {
-                let params = new URLSearchParams();
-                for (let key in body) {
-                    params.append(key, body[key]);
-                }
-                requestInfo.data = params;
-            }
-            else {
-                requestInfo.data = body;
-            }
+            requestInfo.data = body;
         }
 
         let result = (await axios(requestInfo)).data;
@@ -55,7 +46,7 @@ export class CCCAPI {
 
         if (result.changeAppUrl != undefined && this.onUrlChange != undefined) {
             this.onUrlChange(result.changeAppUrl);
-            return await this.request(endpoint, method, body, json);
+            return await this.request(endpoint, method, body);
         }
 
         return result;
@@ -88,7 +79,7 @@ export class CCCAPI {
     }
 
     putSave(save: CCCSave) : Promise<any> {
-        return this.request("/save/"+encodeURIComponent(save.name), "POST", save, true);
+        return this.request("/save/"+encodeURIComponent(save.name), "POST", save);
     }
 
     deleteSave(name: string) : Promise<any> {
