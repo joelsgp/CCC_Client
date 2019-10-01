@@ -3,7 +3,7 @@ import { CCCEnv } from "../CCCEnv";
 import { getLoadingSpinner } from "../CCCUtils";
 import { Validator } from "../Validator";
 import moment = require("moment");
-import { GetGameAttrModes } from "../helpers/GameAttrModes";
+import { GetGameAttrModes } from "../../components/home/GameAttrModes";
 import * as $ from "jquery";
 
 export class Account extends InternalRouteEntry {

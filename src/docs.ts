@@ -1,11 +1,9 @@
-import * as $ from "jquery";
+import $ from "jquery";
 import "bootstrap";
 import * as Showdown from "showdown";
 import Axios from "axios";
-import { initFA } from "./CCCClasses/fontawesome";
-
-// Import Style
-require("./scss/docs.scss");
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./css/docs.css";
 
 function loadContent(html: string) {
     var content = $("#content");
@@ -76,7 +74,7 @@ var mdExtFA = {
 };
 
 $(document).ready(async ()=> {
-    initFA();
+    //initFA();
 
     var converter = new Showdown.Converter({ extensions: [mdExtFA] });
     var url = new URL(location.href);

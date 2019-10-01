@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "Cookie Clicker Cloud",
     "description": "Sync your CookieClicker Game around the browsers!",
-    "version": "2.2.0",
+    "version": "2.3.0",
     "browser_specific_settings": {
         "gecko": {
             "id": "{43119472-cde4-4074-ac7c-0d0c91e560ca}"
@@ -28,7 +28,9 @@
         {
             "matches": [
                 "http://orteil.dashnet.org/cookieclicker/",
-                "http://orteil.dashnet.org/cookieclicker/beta/"
+                "http://orteil.dashnet.org/cookieclicker/beta/",
+                "https://orteil.dashnet.org/cookieclicker/",
+                "https://orteil.dashnet.org/cookieclicker/beta/"
             ],
             "js": [
                 "js/vendor.js",
@@ -45,7 +47,8 @@
         "storage",
         "contextMenus",
         "https://cc.timia2109.com/*",
-        "http://orteil.dashnet.org/cookieclicker/*"
+        "http://orteil.dashnet.org/cookieclicker/*",
+        "https://orteil.dashnet.org/cookieclicker/*"
     ],
     "web_accessible_resources": [
         "js/vendor.js",

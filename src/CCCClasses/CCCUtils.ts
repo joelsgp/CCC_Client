@@ -1,5 +1,6 @@
 import * as bootstrap from "bootstrap";
-import * as $ from "jquery";
+import $ from "jquery";
+import Constants from "../utils/Constants";
 
 export function getLoadingSpinner(spinnername: string) : JQuery {
     var id = "loadspn-"+id;
@@ -129,5 +130,5 @@ export async function isCookieClickerPage() : Promise<boolean> {
 }
 
 export function getEditorUrl(savename: string) : string {
-	return "https://coderpatsy.bitbucket.io/cookies/editor.html#ccc_import="+encodeURIComponent(savename);
+	return Constants.EditorUrl+encodeURIComponent(savename);
 }

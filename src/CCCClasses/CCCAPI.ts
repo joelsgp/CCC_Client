@@ -1,21 +1,36 @@
 import axios, { AxiosAdapter, AxiosRequestConfig } from 'axios';
 import { CCCAPIInformation } from "./CCCAPIInformation";
 import { CCCSave } from '../apiTypes/CCCSave';
+import IRefreshTarget from '../utils/IRefreshTarget';
 
 type HTTPMethod = "GET"|"POST"|"DELETE"|"OPTIONS";
 
 export class CCCAPI {
+
     private apiInformation: CCCAPIInformation;
-    onMotD: (motd: string) => void;
-    onUrlChange: (url: string) => void;
+    onMotD?: (motd: string) => void;
+    onUrlChange?: (url: string) => void;
+    private refreshTargets: IRefreshTarget[];
 
     constructor(apiInformation: CCCAPIInformation) {
         this.apiInformation = apiInformation;
+        this.refreshTargets = [];
+    }
+
+    public attach(refreshTarget: IRefreshTarget) {
+        this.refreshTargets.push(refreshTarget);
+    }
+
+    public detach(refreshTarget: IRefreshTarget) {
+        this.refreshTargets = this.refreshTargets.filter(t => t != refreshTarget);
+    }
+
+    public triggerRefresh(): void {
+        this.refreshTargets.forEach(t => t.reload());
     }
 
     private async request(endpoint: string, method: HTTPMethod, body?: any) : Promise<any> {
-        let requestInfo: AxiosRequestConfig = {
-            url: this.apiInformation.baseUrl+endpoint,
+        let requestInfo: RequestInit = {
             method: method,
             headers: this.apiInformation.getApiHeaders()
         }
@@ -25,10 +40,11 @@ export class CCCAPI {
         }
 
         if (body) {
-            requestInfo.data = body;
+            requestInfo.headers["Content-Type"] = "application/json";
+            requestInfo.body = JSON.stringify(body);
         }
 
-        let result = (await axios(requestInfo)).data;
+        let result = (await (await fetch(this.apiInformation.baseUrl+endpoint, requestInfo)).json());
 
         // Kein Objekt. Kein Erfolg
         if (typeof(result) != "object") {

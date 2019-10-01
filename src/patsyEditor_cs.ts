@@ -1,4 +1,4 @@
-import * as $ from 'jquery';
+import $ from 'jquery';
 import { CCCSettings } from './CCCClasses/CCCSettings';
 import { CCCAPI } from './CCCClasses/CCCAPI';
 import { CCCSave, getPlainCCCSave } from './apiTypes/CCCSave';
@@ -8,7 +8,7 @@ import { LoadCommand, UploadCommand, AutoCommand } from './CCCClasses/transfer/C
 (<any>window).jQuery = $;
 
 // Import Style
-require("./scss/patsyEditor.scss");
+import "./css/patsyEditor.css";
 
 const hideToast = 5000; // 5 Sec
 

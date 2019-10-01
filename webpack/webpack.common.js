@@ -5,7 +5,7 @@ const ManifestPlugin = require("../build_tools/ManifestPlugin");
 
 module.exports = {
     entry: {
-        popup: path.join(__dirname, '../src/popup.ts'),
+        popup: path.join(__dirname, '../src/popup.tsx'),
         content_script_cc: path.join(__dirname, '../src/content_script_cc.ts'),
         inject_cc: path.join(__dirname, "../src/inject_cc.ts"),
         docs: path.join(__dirname, "../src/docs.ts"),
@@ -29,7 +29,7 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /\.scss$/,
+                test: /\.css$/,
                 use: [
                     "style-loader", // creates style nodes from JS strings
                     "css-loader", // translates CSS into CommonJS
