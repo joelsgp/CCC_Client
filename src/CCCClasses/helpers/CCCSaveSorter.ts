@@ -1,4 +1,5 @@
 import { CCCSave } from "../../apiTypes/CCCSave";
+import { CCCEnv } from "../CCCEnv";
 
 export abstract class CCCSaveComparator {
     label: string;
@@ -38,4 +39,8 @@ let comparators: CCCSaveComparator[] =  [
 
 export function getComparators() : CCCSaveComparator[] {
     return comparators;
+}
+
+export function getCurrentSorter(env: CCCEnv) : CCCSaveComparator {
+    return getComparators()[parseInt(env.settings.get("sorter"))];
 }
