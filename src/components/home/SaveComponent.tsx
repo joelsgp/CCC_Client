@@ -6,10 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudDownloadAlt, faEdit, faTrash, faCheck, faTimes } from '@fortawesome/pro-solid-svg-icons';
 import { getEditorUrl } from '../../CCCClasses/CCCUtils';
 import { CCCTransfereMessage } from '../../CCCClasses/transfer/CCCTransfereMessage';
-import { getCurrentAttrMode } from './GameAttrModes';
+import { AttrMode } from './GameAttrModes';
 
 export interface SaveProps extends DefaultComponentProps {
     save: CCCSave;
+    attrMode: AttrMode;
 }
 
 interface SaveStates {
@@ -64,7 +65,7 @@ export class SaveComponent extends React.Component<SaveProps, SaveStates> {
         }} key={save.name}>
             <CardBody>
                 <h5 className="card-title">{save.name}</h5>
-                {getCurrentAttrMode(this.props.env).getJSX(save, colorObject, this.props.env)}
+                {this.props.attrMode.getJSX(save, colorObject, this.props.env)}
                 <ButtonGroup>
                     <Button color="primary" onClick={this.onLoadSaveClick}>
                         <FontAwesomeIcon icon={faCloudDownloadAlt} />

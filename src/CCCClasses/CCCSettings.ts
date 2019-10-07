@@ -11,8 +11,7 @@ interface CCCSettingEntrys {
 
 type storageItem = { [key: string]: any };
 
-let settings: CCCSettingEntrys;
-settings = {
+let settings: CCCSettingEntrys = {
     token: {
         source: "local",
         default: "",

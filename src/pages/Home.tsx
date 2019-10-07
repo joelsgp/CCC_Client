@@ -6,6 +6,9 @@ import { SaveComponent } from '../components/home/SaveComponent';
 import { SelectSorterComponent } from '../components/home/SelectSorterComponent';
 import { CCCSaveComparator, getCurrentSorter } from '../CCCClasses/helpers/CCCSaveSorter';
 import { RefreshButtonComponent } from '../components/shared/RefreshButtonComponent';
+import { AttrMode, getCurrentAttrMode } from '../components/home/GameAttrModes';
+import { ButtonGroup } from 'reactstrap';
+import { SelectAttrModeComponent } from '../components/home/SelectAttrModeComponent';
 
 export interface HomeProps extends DefaultComponentProps {
 
@@ -13,17 +16,20 @@ export interface HomeProps extends DefaultComponentProps {
 
 interface HomeStates extends AFetchComponentStates {
     saves: CCCSave[];
+    currentAttrMode: AttrMode;
 }
 
 export class HomeComponent extends AFetchComponent<HomeProps, HomeStates> {
 
     currentSorter: CCCSaveComparator;
+    currentAttrMode: AttrMode;
 
     constructor(props: HomeProps) {
         super(props);
         this.state = {
             dataLoaded: false,
-            saves: []
+            saves: [],
+            currentAttrMode: getCurrentAttrMode(this.props.env)
         };
         this.currentSorter = getCurrentSorter(props.env);
     }
@@ -40,11 +46,20 @@ export class HomeComponent extends AFetchComponent<HomeProps, HomeStates> {
         this.setState({ saves });
     }
 
+    onChangeAttrMode(currentAttrMode: AttrMode) {
+        this.setState({ currentAttrMode });
+    }
+
     renderFull(): JSX.Element {
         return <>
             <RefreshButtonComponent env={this.props.env} />
-            <SelectSorterComponent onSortSelection={this.onSorterChange.bind(this)} env={this.props.env} />
-            {this.state.saves.map(s => <SaveComponent env={this.props.env} save={s} />)}
+
+            <ButtonGroup>
+                <SelectSorterComponent onSortSelection={this.onSorterChange.bind(this)} env={this.props.env} />
+                <SelectAttrModeComponent env={this.props.env} onSelection={this.onChangeAttrMode.bind(this)} />
+            </ButtonGroup>
+
+            {this.state.saves.map(s => <SaveComponent env={this.props.env} save={s} attrMode={this.state.currentAttrMode} />)}
         </>;
     }
 }

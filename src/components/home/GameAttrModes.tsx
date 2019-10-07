@@ -16,7 +16,6 @@ export abstract class AttrMode {
     protected views: ViewObject[] = [];
 
     abstract name: string;
-    abstract desc: string;
 
     protected abstract render(): JSX.Element;
 
@@ -58,7 +57,6 @@ export abstract class AttrMode {
 class TableAttrMode extends AttrMode {
 
     name = "Table";
-    desc = "Show all Attributes in a table (classic mode)";
 
     render(): JSX.Element {
         return <Table size="sm">
@@ -78,8 +76,7 @@ class TableAttrMode extends AttrMode {
 
 class SlimAttrMode extends AttrMode {
 
-    name = "Slim";
-    desc = "Show all Attributes as Small Badges";
+    name = "Badges";
 
     render(): JSX.Element {
         let badgeText = this.views.map(e => {
