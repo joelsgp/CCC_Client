@@ -17,6 +17,7 @@ import { LoginPageComponent } from './pages/LoginPage';
 import { HelpComponent } from './pages/Help';
 import { Container } from 'reactstrap';
 import { AccountComponent } from './pages/Account';
+import Goodbye from './pages/Goodbye';
 
 class Popup extends React.Component<DefaultComponentProps> {
 
@@ -35,6 +36,9 @@ class Popup extends React.Component<DefaultComponentProps> {
                         </Route>
                         <Route path="/login">
                             <LoginPageComponent env={this.props.env} />
+                        </Route>
+                        <Route path="/goodbye">
+                            <Goodbye />
                         </Route>
                         <Route path="/" exact>
                             <HomeComponent env={this.props.env} />

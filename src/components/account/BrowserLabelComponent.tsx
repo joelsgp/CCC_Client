@@ -2,13 +2,14 @@ import React from "react";
 import { SettingsComponent, SettingsStates } from "./SettingsComponent";
 import { DefaultComponentProps } from "../DefaultComponentProps";
 import { IconDefinition, faTag } from "@fortawesome/pro-solid-svg-icons";
+import { CCCSettings } from "../../CCCClasses/CCCSettings";
 
 interface BrowserLabelStates extends SettingsStates {
     value: string;
 }
 
 export class BrowserLabelComponent extends SettingsComponent<DefaultComponentProps, BrowserLabelStates> {
-
+    
     state = {
         collapsed: false,
         value: this.props.env.settings.get("browserlabel")
@@ -17,9 +18,9 @@ export class BrowserLabelComponent extends SettingsComponent<DefaultComponentPro
     icon: IconDefinition = faTag;
     title: string = "Browserlabel";
 
-    componentWillUnmount() {
-        this.props.env.settings.set("browserlabel", this.state.value);
-        this.props.env.settings.save();
+    protected save(settings: CCCSettings) {
+        settings.set("browserlabel", this.state.value);
+        settings.save();
     }
 
     onValueChange(event: React.ChangeEvent<HTMLInputElement>) {

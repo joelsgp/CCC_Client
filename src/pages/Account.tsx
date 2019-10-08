@@ -7,6 +7,9 @@ import { faUser, faPowerOff, faDownload } from '@fortawesome/pro-solid-svg-icons
 import { ButtonGroup, Button } from 'reactstrap';
 import moment from 'moment';
 import { BrowserLabelComponent } from '../components/account/BrowserLabelComponent';
+import { AddonsComponent } from '../components/account/AddonsComponent';
+import { ChangePasswordComponent } from '../components/account/ChangePasswordComponent';
+import { DeleteAccountComponent } from '../components/account/DeleteAccountComponent';
 
 interface AccountStates extends AFetchComponentStates {
     user?: User;
@@ -75,6 +78,9 @@ export class AccountComponent extends AFetchComponent<DefaultComponentProps, Acc
             <div>
                 <div className="accordion">
                     <BrowserLabelComponent env={this.props.env} />
+                    <AddonsComponent env={this.props.env} />
+                    <ChangePasswordComponent env={this.props.env} />
+                    <DeleteAccountComponent env={this.props.env} />
                 </div>
             </div>
         </>;

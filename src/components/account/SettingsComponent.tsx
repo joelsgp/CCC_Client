@@ -3,6 +3,7 @@ import { DefaultComponentProps } from '../DefaultComponentProps';
 import { IconDefinition } from '@fortawesome/pro-solid-svg-icons';
 import { Card, CardHeader, Button, CardBody, Collapse } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { CCCSettings } from '../../CCCClasses/CCCSettings';
 
 export interface SettingsStates {
     collapsed: boolean;
@@ -19,7 +20,12 @@ export abstract class SettingsComponent<P extends DefaultComponentProps, S exten
     abstract icon: IconDefinition;
     abstract title: string;
 
-    abstract renderInner(): JSX.Element;
+    protected abstract renderInner(): JSX.Element;
+    protected abstract save(settings: CCCSettings): any;
+
+    componentWillUnmount() {
+        this.save(this.props.env.settings);
+    }
 
     toggle() {
         this.setState(state => ({ collapsed: !state.collapsed }));
