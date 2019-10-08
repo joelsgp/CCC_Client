@@ -67,7 +67,7 @@ class CCCEmbeddedFeatures extends CCCTransfereListener implements CCCAPIInformat
             name: Game.bakeryName,
             cookies: Math.floor(Game.cookies),
             wrinkler: 0,
-            lumps: Game.lumps > 0 ? Math.floor(Game.lumps) : 0,
+            lumps: Game.lumps && Game.lumps > 0 ? Math.floor(Game.lumps) : 0,
             save: Game.WriteSave(1),
             cps: Math.floor(Game.cookiesPs - (Game.cookiesPs*(Game.cpsSucked)))
         };

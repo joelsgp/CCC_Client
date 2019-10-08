@@ -1,3 +1,14 @@
+# What's new on v.2.3.0
+Cookie Clicker Cloud works now on https://orteil.dashnet.org/cookieclicker/   
+
+Cookie Clicker Cloud is now build on React   
+
+Savegame Editor by [patsy](https://coderpatsy.bitbucket.io/cookies/editor.html)   
+![Edit](https://cc.timia2109.com/imgs/savegameEditor.png)
+
+Quick Load (Chrome only)   
+![Settings](https://cc.timia2109.com/imgs/quickload.png)
+
 # i{fas fa-clock} What's new on v.2.1.2
 Critical Bugfix to reneable login after server update.
 
