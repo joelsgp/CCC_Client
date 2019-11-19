@@ -3,7 +3,7 @@ import { DefaultComponentProps } from '../components/DefaultComponentProps';
 import { User } from '../apiTypes/User';
 import { AFetchComponentStates, AFetchComponent } from '../components/AFetchComponent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faPowerOff, faDownload } from '@fortawesome/pro-solid-svg-icons';
+import { faUser, faPowerOff, faDownload, faSave } from '@fortawesome/pro-solid-svg-icons';
 import { ButtonGroup, Button } from 'reactstrap';
 import moment from 'moment';
 import { BrowserLabelComponent } from '../components/account/BrowserLabelComponent';
@@ -82,6 +82,10 @@ export class AccountComponent extends AFetchComponent<DefaultComponentProps, Acc
                     <ChangePasswordComponent env={this.props.env} />
                     <DeleteAccountComponent env={this.props.env} />
                 </div>
+                <Button color="success" size="xl" href="#/">
+                    <FontAwesomeIcon icon={faSave} />
+                    Save
+                </Button>
             </div>
         </>;
     }

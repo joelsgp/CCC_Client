@@ -1,6 +1,8 @@
 # What's new on v.2.3.1
 Support for **cookieclicker.eu/cookieclicker/**
 
+Bugfix: Save Button on Accounts Page
+
 # What's new on v.2.3.0
 Cookie Clicker Cloud works now on https://orteil.dashnet.org/cookieclicker/   
 
