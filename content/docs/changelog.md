@@ -1,3 +1,6 @@
+# What's new on v.2.3.1
+Support for **cookieclicker.eu/cookieclicker/**
+
 # What's new on v.2.3.0
 Cookie Clicker Cloud works now on https://orteil.dashnet.org/cookieclicker/   
 

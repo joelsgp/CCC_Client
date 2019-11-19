@@ -30,7 +30,11 @@
                 "http://orteil.dashnet.org/cookieclicker/",
                 "http://orteil.dashnet.org/cookieclicker/beta/",
                 "https://orteil.dashnet.org/cookieclicker/",
-                "https://orteil.dashnet.org/cookieclicker/beta/"
+                "https://orteil.dashnet.org/cookieclicker/beta/",
+                "https://cookieclicker.eu/cookieclicker/",
+                "https://cookieclicker.eu/cookieclicker/beta/",
+                "http://cookieclicker.eu/cookieclicker/",
+                "http://cookieclicker.eu/cookieclicker/beta"
             ],
             "js": [
                 "js/vendor.js",
@@ -48,7 +52,9 @@
         "contextMenus",
         "https://cc.timia2109.com/*",
         "http://orteil.dashnet.org/cookieclicker/*",
-        "https://orteil.dashnet.org/cookieclicker/*"
+        "https://orteil.dashnet.org/cookieclicker/*",
+        "https://cookieclicker.eu/cookieclicker/*",
+        "http://cookieclicker.eu/cookieclicker/*"
     ],
     "web_accessible_resources": [
         "js/vendor.js",
