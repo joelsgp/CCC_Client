@@ -26,7 +26,7 @@ function packMozillaSource() {
 
     for (let file of fs.readdirSync(sourcesPath)) {
         // Hide elements
-        if (!nonSourcesContent.includes(file)) {
+        if (!nonSourcesContent.includes(file) || file.indexOf("ccc_") === -1) {
             let filePath = path.join(sourcesPath, file);
             let stats = fs.lstatSync( filePath );
             if (stats.isDirectory()) {
