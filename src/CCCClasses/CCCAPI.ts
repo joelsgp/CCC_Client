@@ -1,4 +1,3 @@
-import axios, { AxiosAdapter, AxiosRequestConfig } from 'axios';
 import { CCCAPIInformation } from "./CCCAPIInformation";
 import { CCCSave } from '../apiTypes/CCCSave';
 import IRefreshTarget from '../utils/IRefreshTarget';

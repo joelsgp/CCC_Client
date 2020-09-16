@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSync } from "@fortawesome/pro-solid-svg-icons";
+import { faSync } from "@fortawesome/free-solid-svg-icons";
 import Alert from "reactstrap/lib/Alert";
 import { DefaultComponentProps } from "./DefaultComponentProps";
 import { CCCAPI } from "../CCCClasses/CCCAPI";

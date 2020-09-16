@@ -1,6 +1,6 @@
 import React from 'react';
 import { DefaultComponentProps } from '../DefaultComponentProps';
-import { IconDefinition } from '@fortawesome/pro-solid-svg-icons';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Card, CardHeader, Button, CardBody, Collapse } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CCCSettings } from '../../CCCClasses/CCCSettings';

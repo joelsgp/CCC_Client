@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faQuestionCircle, faHeart, faQuestion, faListUl, faGlobe, IconDefinition, faClock } from "@fortawesome/pro-solid-svg-icons";
+import { faQuestionCircle, faHeart, faQuestion, faListUl, faGlobe, IconDefinition, faClock } from "@fortawesome/free-solid-svg-icons";
 import { ListGroupItem, ListGroup } from "reactstrap";
 import React from "react";
 import { faReact, faBootstrap, faFontAwesome } from "@fortawesome/free-brands-svg-icons";
+import { getUri } from "../openDocs";
 
 type ThanksEntry = {
     name: string,
@@ -65,11 +66,11 @@ export function HelpComponent(): JSX.Element {
             Help me!
         </h2>
         <ul className="list-group">
-            <a className="list-group-item list-group-item-action" href="/docs/index.html?f=faq" target="_blank">
+            <a className="list-group-item list-group-item-action" href={getUri("FAQ")} target="_blank">
                 <FontAwesomeIcon icon={faQuestion} />
                 <strong>FAQ</strong>
             </a>
-            <a className="list-group-item list-group-item-action btnChangelog" href="/docs/index.html?f=changelog" target="_blank">
+            <a className="list-group-item list-group-item-action btnChangelog" href={getUri("Changelog")} target="_blank">
                 <FontAwesomeIcon icon={faListUl} />
                 <strong>Changelog</strong>
             </a>

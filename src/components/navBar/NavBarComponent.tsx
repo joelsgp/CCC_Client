@@ -1,6 +1,6 @@
 import React from 'react';
 import { SettingsAPIInformation } from '../../CCCClasses/SettingsAPIInformation';
-import { faHome, faQuestionCircle, faNewspaper, faUser, faCloudUploadAlt, faRedo, faCookie } from '@fortawesome/pro-solid-svg-icons';
+import { faHome, faQuestionCircle, faNewspaper, faUser, faCloudUploadAlt, faRedo, faCookie } from '@fortawesome/free-solid-svg-icons';
 import { UrlNavEntryComponent } from './UrlNavEntryComponent';
 import { faDiscord } from "@fortawesome/free-brands-svg-icons";
 import { ActionNavEntryComponent } from './ActionNavEntryComponent';

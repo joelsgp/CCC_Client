@@ -1,7 +1,7 @@
 import React from "react";
 import { SettingsComponent, SettingsStates } from "./SettingsComponent";
 import { DefaultComponentProps } from "../DefaultComponentProps";
-import { IconDefinition, faTag } from "@fortawesome/pro-solid-svg-icons";
+import { IconDefinition, faTag } from "@fortawesome/free-solid-svg-icons";
 import { CCCSettings } from "../../CCCClasses/CCCSettings";
 
 interface BrowserLabelStates extends SettingsStates {

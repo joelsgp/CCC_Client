@@ -2,7 +2,7 @@ import React from 'react';
 import { DefaultComponentProps } from '../DefaultComponentProps';
 import { FormGroup, Label, Input, Button, FormFeedback } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusSquare, faNewspaper } from '@fortawesome/pro-solid-svg-icons';
+import { faPlusSquare, faNewspaper } from '@fortawesome/free-solid-svg-icons';
 import { LoadingComponent } from '../shared/LoadingComponent';
 import { Validator } from '../../CCCClasses/Validator';
 

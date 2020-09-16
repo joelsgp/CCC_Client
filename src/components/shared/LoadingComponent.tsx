@@ -1,6 +1,6 @@
 import { Alert } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSync } from "@fortawesome/pro-solid-svg-icons";
+import { faSync } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
 export function LoadingComponent(): JSX.Element {

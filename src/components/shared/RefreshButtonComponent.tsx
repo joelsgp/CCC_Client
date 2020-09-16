@@ -2,7 +2,7 @@ import React from 'react';
 import { DefaultComponentProps } from '../DefaultComponentProps';
 import { Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSync } from '@fortawesome/pro-solid-svg-icons';
+import { faSync } from '@fortawesome/free-solid-svg-icons';
 
 
 export class RefreshButtonComponent extends React.Component<DefaultComponentProps, {}> {

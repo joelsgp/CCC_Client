@@ -8,7 +8,6 @@ module.exports = {
         popup: path.join(__dirname, '../src/popup.tsx'),
         content_script_cc: path.join(__dirname, '../src/content_script_cc.ts'),
         inject_cc: path.join(__dirname, "../src/inject_cc.ts"),
-        docs: path.join(__dirname, "../src/docs.ts"),
         background: path.join(__dirname, "../src/background.ts"),
         patsyEditor: path.join(__dirname, "../src/patsyEditor_cs.ts")
     },
@@ -42,10 +41,12 @@ module.exports = {
     },
     plugins: [
         // Copy plain files
-        new CopyWebpackPlugin([{
-            from: "content",
-            to: "../"
-        }]),
+        new CopyWebpackPlugin({
+            patterns: [{
+                from: "content",
+                to: "../"
+            }]
+        }),
 
         // Manifest Tuner 
         new ManifestPlugin("../manifest.json")

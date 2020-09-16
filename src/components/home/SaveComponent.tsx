@@ -3,7 +3,7 @@ import { DefaultComponentProps } from '../DefaultComponentProps';
 import { CCCSave } from '../../apiTypes/CCCSave';
 import { CardBody, ButtonGroup, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCloudDownloadAlt, faEdit, faTrash, faCheck, faTimes } from '@fortawesome/pro-solid-svg-icons';
+import { faCloudDownloadAlt, faEdit, faTrash, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { getEditorUrl } from '../../CCCClasses/CCCUtils';
 import { CCCTransfereMessage } from '../../CCCClasses/transfer/CCCTransfereMessage';
 import { AttrMode } from './GameAttrModes';

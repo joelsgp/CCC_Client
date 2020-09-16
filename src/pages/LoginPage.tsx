@@ -3,9 +3,10 @@ import { DefaultComponentProps } from '../components/DefaultComponentProps';
 import classnames from 'classnames';
 import { Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook } from '@fortawesome/pro-solid-svg-icons';
+import { faBook } from '@fortawesome/free-solid-svg-icons';
 import { LoginComponent } from '../components/login/LoginComponent';
 import { RegisterComponent } from '../components/login/RegisterComponent';
+import { getUri } from '../openDocs';
 
 export interface LoginProps extends DefaultComponentProps {
 
@@ -61,7 +62,7 @@ export class LoginPageComponent extends React.Component<LoginProps, LoginStates>
                 </TabPane>
             </TabContent> 
             <br/>
-            <a href="/docs/index.html?f=faq" target="_blank">
+            <a href={getUri("FAQ")} target="_blank">
                 <FontAwesomeIcon icon={faBook}/>
                 Open FAQ
             </a>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, ModalFooter, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faCheck } from '@fortawesome/pro-solid-svg-icons';
+import { faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 export interface ConfirmProps {
     onAccept: () => any;

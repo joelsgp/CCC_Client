@@ -1,7 +1,7 @@
 import React from 'react';
 import { DefaultComponentProps } from '../DefaultComponentProps';
 import { SettingsComponent, SettingsStates } from './SettingsComponent';
-import { IconDefinition, faPuzzlePiece, faTrash, faPlus } from '@fortawesome/pro-solid-svg-icons';
+import { IconDefinition, faPuzzlePiece, faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Input, InputGroup, InputGroupAddon, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CCCSettings } from '../../CCCClasses/CCCSettings';

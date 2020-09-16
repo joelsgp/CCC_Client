@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "Cookie Clicker Cloud",
     "description": "Sync your CookieClicker Game around the browsers!",
-    "version": "2.3.1",
+    "version": "2.3.2",
     "browser_specific_settings": {
         "gecko": {
             "id": "{43119472-cde4-4074-ac7c-0d0c91e560ca}"

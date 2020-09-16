@@ -2,7 +2,7 @@ import React from 'react';
 import { DefaultComponentProps } from '../DefaultComponentProps';
 import { FormGroup, Label, Input, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignIn } from '@fortawesome/pro-solid-svg-icons';
+import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { LoadingComponent } from '../shared/LoadingComponent';
 
 interface LoginStates {
@@ -60,7 +60,7 @@ export class LoginComponent extends React.Component<DefaultComponentProps, Login
                 <Input placeholder="Password" value={this.state.password} onChange={this.handleChange.bind(this)} type="password" name="password" />
             </FormGroup>
             <Button color="primary" onClick={this.handleLogin.bind(this)}>
-                <FontAwesomeIcon icon={faSignIn} />
+                <FontAwesomeIcon icon={faSignInAlt} />
                 Login
             </Button> 
         </>;
