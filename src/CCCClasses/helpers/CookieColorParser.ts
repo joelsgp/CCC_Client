@@ -48,6 +48,14 @@ export class CookieColorParser {
     }
 }
 
+// todo: better system for this
+// like how the game itself does it:
+// var formatLong=[' thousand',' million',' billion',' trillion',' quadrillion',' quintillion',' sextillion',' septillion',' octillion',' nonillion'];
+// var prefixes=['','un','duo','tre','quattuor','quin','sex','septen','octo','novem'];
+// var suffixes=['decillion','vigintillion','trigintillion','quadragintillion','quinquagintillion','sexagintillion','septuagintillion','octogintillion','nonagintillion'];
+// var formatShort=['k','M','B','T','Qa','Qi','Sx','Sp','Oc','No'];
+// var prefixes=['','Un','Do','Tr','Qa','Qi','Sx','Sp','Oc','No'];
+// var suffixes=['D','V','T','Qa','Qi','Sx','Sp','O','N'];
 let cookieColorDefinitions: Array<CookieColorDefinition> = [
     {
         "color": "#7b1fa2",
@@ -144,6 +152,67 @@ let cookieColorDefinitions: Array<CookieColorDefinition> = [
         "min": 48,
         "white_textcolor": true,
         "label": " quindecillion"
+    },
+    // todo: new colours
+    {
+        "color": "#616161",
+        "min": 51,
+        "white_textcolor": true,
+        "label": " sexdecillion"
+    },
+    {
+        "color": "#616161",
+        "min": 54,
+        "white_textcolor": true,
+        "label": " septendecillion"
+    },
+    {
+        "color": "#616161",
+        "min": 57,
+        "white_textcolor": true,
+        "label": " octodecillion"
+    },
+    {
+        "color": "#616161",
+        "min": 60,
+        "white_textcolor": true,
+        "label": " novemdecillion"
+    },
+    {
+        "color": "#616161",
+        "min": 63,
+        "white_textcolor": true,
+        "label": "vingtillion"
+    },
+    {
+        "color": "#616161",
+        "min": 66,
+        "white_textcolor": true,
+        "label": "unvingtillion"
+    },
+    {
+        "color": "#616161",
+        "min": 69,
+        "white_textcolor": true,
+        "label": "vingtillion"
+    },
+    {
+        "color": "#616161",
+        "min": 72,
+        "white_textcolor": true,
+        "label": "tresvingtillion"
+    },
+    {
+        "color": "#616161",
+        "min": 75,
+        "white_textcolor": true,
+        "label": "quattorvingtillion"
+    },
+    {
+        "color": "#616161",
+        "min": 78,
+        "white_textcolor": true,
+        "label": "quinvingtillion"
     },
     {
         "color": "#1B2631",
