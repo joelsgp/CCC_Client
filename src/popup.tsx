@@ -48,7 +48,7 @@ class Popup extends React.Component<DefaultComponentProps> {
             </Container>
             <MotDComponent env={this.props.env} />
             <div className="text-center">
-                CCC is an extension / servce by 
+                CCC is an extension by 
                 <a href="https://timia2109.com" target="_blank" className="ml-1">
                     Tim Ittermann (@timia2109)
                 </a>
