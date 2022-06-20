@@ -2,7 +2,7 @@
     "name": "cookieclickercloudclient",
     "version": "1.0.0",
     "description": "",
-    "license": "",
+    "license": "MIT",
     "author": "Tim Ittermann",
     "main": "index.js",
     "scripts": {
