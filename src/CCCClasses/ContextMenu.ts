@@ -8,10 +8,12 @@ let ctxIdToGame = new Map<string, string>();
 let contextPages = <string[]> require('../LoadContextMenu.json');
 
 function onMenuItemClick(data: chrome.contextMenus.OnClickData, tab: chrome.tabs.Tab): void {
-    if (ctxIdToGame.has( data.menuItemId )) {
+    let ctxId = data.menuItemId;
+    if (typeof ctxId === "number") {ctxId = ctxId.toString()}
+    if (ctxIdToGame.has(ctxId)) {
         new CCCTransfereMessage({
             cccCommand: "load",
-            name: ctxIdToGame.get(data.menuItemId)
+            name: ctxIdToGame.get(ctxId)
         }).sendToTab();
     }
 }
