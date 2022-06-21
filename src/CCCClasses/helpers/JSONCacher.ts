@@ -4,7 +4,7 @@ export class JSONCacher {
 
     private key: string;
     public fallback: StringKeyObject;
-    
+
     constructor(key: string) {
         this.key = key;
         this.fallback = undefined;

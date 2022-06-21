@@ -52,7 +52,7 @@ export class DeleteAccountComponent extends SettingsComponent<DefaultComponentPr
 
     private onValueChange(event: React.ChangeEvent<HTMLInputElement>) {
         let value = event.target.value;
-        
+
         this.setState(s => {
             return {
                 password: value,

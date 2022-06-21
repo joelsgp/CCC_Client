@@ -60,7 +60,7 @@ export class LoginPageComponent extends React.Component<LoginProps, LoginStates>
                 <TabPane tabId="2">
                     <RegisterComponent env={this.props.env} />
                 </TabPane>
-            </TabContent> 
+            </TabContent>
             <br/>
             <a href={getUri("FAQ")} target="_blank">
                 <FontAwesomeIcon icon={faBook}/>

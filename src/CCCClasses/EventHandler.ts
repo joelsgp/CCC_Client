@@ -37,7 +37,7 @@ export abstract class EventHandler {
      */
     protected notify(event: string, ...args: any[]) : void {
         console.log(`${event} triggerd`);
-        
+
         if (!this.listeners.has(event)) return;
 
         this.listeners.get(event).forEach(element => {

@@ -3,7 +3,7 @@ import { CCCEnv } from "../CCCEnv";
 
 export abstract class CCCSaveComparator {
     label: string;
-    abstract compare(a: CCCSave, b: CCCSave) : number;    
+    abstract compare(a: CCCSave, b: CCCSave) : number;
 }
 
 let comparators: CCCSaveComparator[] =  [

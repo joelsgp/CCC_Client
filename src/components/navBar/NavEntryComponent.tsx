@@ -16,7 +16,7 @@ interface NavEntryStates {
 
 export abstract class NavEntryComponent<Props extends NavEntryProps = NavEntryProps> extends React.Component<Props, NavEntryStates> {
 
-    constructor(props: Props) {        
+    constructor(props: Props) {
         super(props);
         this.state = {
             tooltipOpen: false

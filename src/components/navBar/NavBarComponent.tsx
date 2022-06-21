@@ -15,7 +15,7 @@ interface NavBarState {
 }
 
 export class NavBarComponent extends React.Component<DefaultComponentProps, NavBarState> implements ILoginStateChangedListener {
-    
+
     constructor(props: DefaultComponentProps) {
         super(props);
         props.env.loginStateListener.push(this);
@@ -56,7 +56,7 @@ function NavHeaderComponent(): JSX.Element {
     return <div className="navbar navbar-expand-lg navbar-light bg-light">
         <a className="navbar-brand" href="#/">
             <img src="imgs/Logo48.png" width="30" height="30" className="d-inline-block align-top mr-1" alt="" />
-            Cookie Clicker Cloud 
+            Cookie Clicker Cloud
             <Badge className="ml-1" color="primary">{SettingsAPIInformation.getVersion()}</Badge>
         </a>
     </div>;

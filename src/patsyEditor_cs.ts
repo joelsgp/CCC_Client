@@ -136,7 +136,7 @@ class PatsyEditorHandler extends CCCTransfereListener {
 
 // When DOM loaded...
 $(async() =>{
-    
+
     let settings = new CCCSettings();
     await settings.load();
     settings.listenOnDataChanges();

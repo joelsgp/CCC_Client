@@ -12,7 +12,7 @@ interface LoginStates {
 }
 
 export class LoginComponent extends React.Component<DefaultComponentProps, LoginStates> {
-    
+
     state = {
         username: "",
         password: "",
@@ -62,7 +62,7 @@ export class LoginComponent extends React.Component<DefaultComponentProps, Login
             <Button color="primary" onClick={this.handleLogin.bind(this)}>
                 <FontAwesomeIcon icon={faSignInAlt} />
                 Login
-            </Button> 
+            </Button>
         </>;
     }
 }

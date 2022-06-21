@@ -42,7 +42,7 @@ class CCCEmbeddedFeatures extends CCCTransfereListener implements CCCAPIInformat
     get token(): string {
         return this.bannerNode.dataset.token;
     }
-    
+
     get baseUrl(): string {
         let url: string;
         if (this.bannerNode.dataset.url !== undefined){
@@ -53,9 +53,9 @@ class CCCEmbeddedFeatures extends CCCTransfereListener implements CCCAPIInformat
         }
         return url;
     }
-    
+
     getApiHeaders(): HeaderMap {
-        return {};    
+        return {};
     }
 
     showMessage(message: string) : void {

@@ -24,7 +24,7 @@ export class CCCEnv extends EventHandler {
     constructor() {
         super();
         this.settings = new CCCSettings();
-        
+
         this.api = new CCCAPI( new SettingsAPIInformation(this.settings) );
         this.api.onUrlChange = (url) => {
             this.settings.set("url", url);

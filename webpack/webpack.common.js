@@ -48,7 +48,7 @@ module.exports = {
             }]
         }),
 
-        // Manifest Tuner 
+        // Manifest Tuner
         new ManifestPlugin("../manifest.json")
     ]
 };

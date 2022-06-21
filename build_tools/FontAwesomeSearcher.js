@@ -1,6 +1,6 @@
 /*
  *  Search all FontAwesome Icons that I use in this project and generate the imports in ~/src/CCCClasses/fontawesome.ts
- *  Should run as first task of building 
+ *  Should run as first task of building
  */
 
 const fs = require("fs");
@@ -57,7 +57,7 @@ function createName(faName) {
 function formatFAImports(icons) {
     let string = "import { library, icon, dom } from '@fortawesome/fontawesome-svg-core';";
     let lib = [];
-    
+
     let fas = Array.from( icons.get("fas") ).sort();
     let fab = Array.from( icons.get("fab") ).sort();
     // fas

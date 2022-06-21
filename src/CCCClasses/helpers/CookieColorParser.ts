@@ -43,7 +43,8 @@ export class CookieColorParser {
     }
 
     backeryName(name: string) : string {
-        if (name.slice(-1).toLowerCase()=='s') name+='\' bakery'; else name+='\'s bakery';			
+        if (name.slice(-1).toLowerCase()=='s') name+='\' bakery'; else name+='\'s bakery';
+
         return name;
     }
 }
@@ -218,7 +219,7 @@ let cookieColorDefinitions: Array<CookieColorDefinition> = [
         "color": "#1B2631",
         "min": 51,
         "white_textcolor": true,
-        "label": "Infinity", 
+        "label": "Infinity",
         "replace": true
     }
 ];

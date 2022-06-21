@@ -79,7 +79,7 @@ export class RegisterComponent extends React.Component<DefaultComponentProps, Re
         if (this.state.processWork) {
             return <LoadingComponent />
         }
-        
+
         return <>
             <h2>Register</h2>
             <small>
@@ -109,7 +109,7 @@ export class RegisterComponent extends React.Component<DefaultComponentProps, Re
             <Button color="primary" onClick={this.handleRegister.bind(this)} disabled={!this.isValid}>
                 <FontAwesomeIcon icon={faPlusSquare} />
                 Register
-            </Button> 
+            </Button>
         </>;
     }
 }

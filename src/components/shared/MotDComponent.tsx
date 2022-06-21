@@ -7,7 +7,7 @@ interface MotDStates {
 }
 
 export class MotDComponent extends React.Component<DefaultComponentProps, MotDStates> {
-    
+
     constructor(props: DefaultComponentProps) {
         super(props);
         this.state = {

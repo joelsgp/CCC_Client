@@ -4,7 +4,7 @@ let getManifest = ()=>{
 
     return JSON.parse(
         fs.readFileSync(
-            path.join(__dirname, "../manifest.json"), 
+            path.join(__dirname, "../manifest.json"),
             "utf-8"
             )
     );
@@ -18,7 +18,7 @@ let output = (outname) => {
     if (!fs.existsSync(outpath)) {
         fs.mkdirSync(outpath);
     }
-    
+
     return outpath;
 };
 
@@ -27,7 +27,7 @@ let getNameForReleaseFolder = () => {
     + getManifest().version.split(".").join("_");
 };
 
-let getNameForRelease = ()=>{    
+let getNameForRelease = ()=>{
     return output("../"+getNameForReleaseFolder())+"/js";
 };
 

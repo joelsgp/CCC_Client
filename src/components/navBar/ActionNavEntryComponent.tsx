@@ -7,7 +7,7 @@ export interface ActionNavEntryProps extends NavEntryProps {
 }
 
 export class ActionNavEntryComponent extends NavEntryComponent<ActionNavEntryProps> {
-    
+
     constructor(props: ActionNavEntryProps) {
         super(props);
     }

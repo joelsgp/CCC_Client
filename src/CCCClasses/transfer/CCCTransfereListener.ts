@@ -18,7 +18,7 @@ export abstract class CCCTransfereListener {
         try {
             let m = <CCCTransfereCommand> JSON.parse( ev.data );
             switch (m.cccCommand) {
-                case "load": 
+                case "load":
                     this.load(<LoadCommand>m);
                     break;
                 case "upload":

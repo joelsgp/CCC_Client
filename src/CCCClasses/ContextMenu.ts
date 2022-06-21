@@ -23,7 +23,7 @@ export async function createContextMenu() : Promise<void> {
 
     let api = new CCCAPI( new SettingsAPIInformation(settings) );
 
-    const masterId = "CCC_quickload_ctxmenu"; 
+    const masterId = "CCC_quickload_ctxmenu";
     chrome.contextMenus.create({
         id: masterId,
         title: "Quick Load",

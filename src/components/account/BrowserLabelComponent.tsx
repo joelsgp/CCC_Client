@@ -9,7 +9,7 @@ interface BrowserLabelStates extends SettingsStates {
 }
 
 export class BrowserLabelComponent extends SettingsComponent<DefaultComponentProps, BrowserLabelStates> {
-    
+
     state = {
         collapsed: false,
         value: this.props.env.settings.get("browserlabel")

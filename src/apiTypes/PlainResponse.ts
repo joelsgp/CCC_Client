@@ -1,6 +1,6 @@
 export interface PlainResponse {
     ok: boolean;
-    error?: string; 
+    error?: string;
 }
 
 export interface ErrorResponse extends PlainResponse {

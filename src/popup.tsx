@@ -48,12 +48,12 @@ class Popup extends React.Component<DefaultComponentProps> {
             </Container>
             <MotDComponent env={this.props.env} />
             <div className="text-center">
-                CCC is an extension by 
+                CCC is an extension by
                 <a href="https://timia2109.com" target="_blank" className="ml-1">
                     Tim Ittermann (@timia2109)
                 </a>
                 <br />
-                Cookie Clicker is a game by 
+                Cookie Clicker is a game by
 		        <a href="http://orteil.dashnet.org/" target="_blank" className="ml-1">
                     Orteil
 		        </a>
