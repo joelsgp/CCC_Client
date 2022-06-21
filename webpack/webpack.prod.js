@@ -1,12 +1,13 @@
-const webpack = require('webpack');
-const merge = require('webpack-merge');
-//const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const helpers = require("./helpers");
 
-module.exports = merge(common, {
-    mode: 'production',
-    output: {
-        path: helpers.getNameForRelease()
+module.exports = merge(
+    common, 
+    {
+        mode: 'production',
+        output: {
+            path: helpers.getNameForRelease()
+        }
     }
-});
+);
