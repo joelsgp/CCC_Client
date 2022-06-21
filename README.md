@@ -1,6 +1,6 @@
 # Cookie Clicker Cloud
 
-Cookie Clicker Cloud is an Webextension which allows you to sync your CookieClicker game with other browsers and to backup your savegame.
+Cookie Clicker Cloud is a borwser extension which allows you to sync your Cookie Clicker game with other browsers and to backup your savegame.
 You can save as many games you want :)
 
 CCC is free to use and will stay free. You savegame is located on an own server, where nobody has access.
@@ -10,7 +10,7 @@ An free account is required for use.
 This is a free time project.
 
 ## Release builden
-Benötigt NodeJS v10.12.0
+Benötigt NodeJS v10.24.0
 
     npm install
     npm run build
