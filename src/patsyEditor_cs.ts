@@ -17,7 +17,7 @@ const domSelectors = {
     importButton: "#importButton",
     exportField: "#exportField",
     shortNumbers: "#abbrCheck",
-    backeryName: "#bakeryNameIn",
+    bakeryName: "#bakeryNameIn",
     cookies: "#cookiesBank",
     wrinkler: "#cooksMunchedSaved",
     cps: "#cookiesPerSecond span",
@@ -82,7 +82,7 @@ class PatsyEditorHandler extends CCCTransfereListener {
 
         // Insert Button
         $(domSelectors.uploadAfter).after(uploadButton);
-        uploadButton.after($('<span>This override your game, if you not rename the backery!</span>'));
+        uploadButton.after($('<span>This will override your game, if you do not rename the bakery!</span>'));
 
         // Insert CCC CSS
         $("head").append(
@@ -118,7 +118,7 @@ class PatsyEditorHandler extends CCCTransfereListener {
         // Create Save
         let save: CCCSave = getPlainCCCSave();
 
-        save.name = <string>$(domSelectors.backeryName).val();
+        save.name = <string>$(domSelectors.bakeryName).val();
         save.cookies = Number($(domSelectors.cookies).val());
         save.wrinkler = Number($(domSelectors.wrinkler).val());
         save.cps = Number($(domSelectors.cps).text());

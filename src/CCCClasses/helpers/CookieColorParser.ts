@@ -42,8 +42,12 @@ export class CookieColorParser {
         return this.getCookieColor(cookies.toString(), 0);
     }
 
-    backeryName(name: string) : string {
-        if (name.slice(-1).toLowerCase()=='s') name+='\' bakery'; else name+='\'s bakery';
+    bakeryName(name: string) : string {
+        if (name.slice(-1).toLowerCase()=='s') {
+            name+="' bakery";
+        } else {
+            name+="'s bakery";
+        }
 
         return name;
     }
