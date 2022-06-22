@@ -1,5 +1,5 @@
 {
-    "name": "cookieclickercloud-client",
+    "name": "cccloud-client",
     "version": "3.0.0",
     "description": "Cookie Clicker Cloud save backup client",
     "license": "MIT",
