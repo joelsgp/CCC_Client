@@ -1,7 +1,7 @@
 {
     "name": "cookieclickercloudclient",
-    "version": "^1.0.0",
-    "description": "",
+    "version": "2.3.2",
+    "description": "Cookie Clicker Cloud save backup client",
     "license": "MIT",
     "author": "Tim Ittermann",
     "main": "index.js",
