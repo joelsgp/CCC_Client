@@ -96,7 +96,8 @@ class CCCEmbeddedFeatures extends CCCTransfereListener implements CCCAPIInformat
 
     auto(command: AutoCommand) {
         if (this.intervalId == -1) {
-            this.intervalId = setInterval(()=>this.upload, command.interval);
+            let timeout = setInterval(()=>this.upload, command.interval);
+            this.intervalId = timeout[Symbol.toPrimitive]()
             this.upload(null);
         }
         else {
