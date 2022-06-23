@@ -16,7 +16,7 @@ Requires NodeJS LTS Gallium (16)
 ## Commands
 npm run
  - **watch**: Builds the extension in debug mode in ./dist/
- - **build**: Builds the finished extension in prod mode in ./dist/ccc_v_v_v /(e.g. ccc_1_2_3)
+ - **build**: Builds the finished extension in prod mode in ./dist/ccc_v_v_v/ (e.g. ccc_1_2_3)
  - **release**: Runs build, packs the folder into the zip ccc_v_v_v.zip which can be uploaded, and adds the sources to a zip in ccc_v_v_v_sources.zip
 
 ## Activate debug features
