@@ -6,9 +6,9 @@
     "author": "Tim Ittermann",
     "main": "index.js",
     "scripts": {
-        "build": "webpack --config webpack/webpack.prod.js --mode=production --env prod",
-        "release": "npm run build && node ./build_tools/PackRelease.js",
-        "watch": "webpack --config webpack/webpack.dev.js --mode=development --env dev --watch"
+        "watch": "webpack --config webpack/webpack.dev.js --watch",
+        "build": "webpack --config webpack/webpack.prod.js",
+        "release": "npm run build && node ./build_tools/PackRelease.js"
     },
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^6.1.1",

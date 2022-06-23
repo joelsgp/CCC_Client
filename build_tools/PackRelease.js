@@ -1,7 +1,7 @@
+const fs = require("fs");
+const path = require("path");
 const admzip = require("adm-zip");
 const helpers = require("../webpack/helpers");
-const path = require("path");
-const fs = require("fs");
 
 const nonSourcesContent = [
     "node_modules",
@@ -10,18 +10,20 @@ const nonSourcesContent = [
 ];
 
 function packReleaseZip() {
-    let buildDirName = helpers.getNameForReleaseFolder();
-    let from = path.resolve(buildDirName);
+    let releaseDir = helpers.getReleaseDir();
+    let from = path.resolve(releaseDir);
+    let zipPath = path.join(from, ".zip")
     let zip = new admzip();
-    console.log("Pack "+from);
+    console.log("Pack " + from);
     zip.addLocalFolder(from);
-    zip.writeZip( path.resolve(buildDirName+".zip" ) );
-    console.log("Release ZIP erstellt! "+path.resolve(buildDirName+".zip" ));
+    zip.writeZip( path.resolve(zipPath) );
+    console.log("Release zip created! " + zipPath);
 }
 
 function packMozillaSource() {
-    let sourcesPath = path.resolve(".");
-    let sourcesZipPath = path.resolve("../"+helpers.getNameForReleaseFolder()+"_sources.zip");
+    let sourcesPath = path.resolve("..");
+    let releaseDir = helpers.getReleaseDir();
+    let zipPath = path.resolve(releaseDir + "_sources.zip");
     let zip = new admzip();
 
     for (let file of fs.readdirSync(sourcesPath)) {
@@ -41,7 +43,7 @@ function packMozillaSource() {
     //zip.addLocalFolder(path.resolve("."));
     zip.writeZip( sourcesZipPath );
 
-    console.log("Quelle gepackt in: " + sourcesZipPath);
+    console.log("Source packed! " + sourcesZipPath);
 }
 
 packReleaseZip();

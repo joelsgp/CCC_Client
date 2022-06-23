@@ -1,4 +1,3 @@
-const webpack = require("webpack");
 const path = require('path');
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const ManifestPlugin = require("../build_tools/ManifestPlugin");

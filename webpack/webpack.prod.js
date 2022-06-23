@@ -7,7 +7,7 @@ module.exports = merge(
     {
         mode: 'production',
         output: {
-            path: helpers.getNameForRelease()
+            path: helpers.getReleaseDir()
         }
     }
 );

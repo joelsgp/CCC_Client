@@ -8,7 +8,7 @@ module.exports = merge(
         devtool: 'inline-source-map',
         mode: 'development',
         output: {
-            path: helpers.output('../dist/js')
+            path: helpers.outputDir('../dist/js')
         }
     }
 );

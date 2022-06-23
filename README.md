@@ -8,16 +8,16 @@ CCC is free to use and will stay free. You savegame is located on an own server,
 A free account is required for use.
 
 ## Release build
-Requires NodeJS v10.24.0
+Requires NodeJS LTS Gallium (16)
 
     npm install
-    npm run build
+    npm run release
 
 ## Commands
 npm run
- - **watch**: Builds the extension in debug mode in ./dist
- - **build**: Builds the finished extension in prod mode in ./ccc_v_v_v (e.g. ./ccc_1_2_3)
- - **release**: Runs build, packs the folder into the zip ./ccc_v_v_v.zip which can be uploaded, and adds the sources to a zip in ./ccc_v_v_v_sources.zip (without .git, .vscode, node_modules)
+ - **watch**: Builds the extension in debug mode in ./dist/
+ - **build**: Builds the finished extension in prod mode in ./dist/ccc_v_v_v /(e.g. ccc_1_2_3)
+ - **release**: Runs build, packs the folder into the zip ccc_v_v_v.zip which can be uploaded, and adds the sources to a zip in ccc_v_v_v_sources.zip
 
 ## Activate debug features
 Open browser console and run `localStorage.debug = 1`
