@@ -3,16 +3,18 @@ const path = require("path");
 const admzip = require("adm-zip");
 const helpers = require("../webpack/helpers");
 
-const nonSourcesContent = [
-    "node_modules",
-    ".vscode",
-    ".git"
-];
+function getIgnore() {
+    let gitignore = fs.readFileSync(".gitignore", "utf-8");
+    let lines = gitignore.split("\n").filter(Boolean);
+    let ignore = new RegExp(lines.join("|"))
+    return lines
+}
 
 function packReleaseZip() {
     let releaseDir = helpers.getReleaseDir();
     let from = path.resolve(releaseDir);
-    let zipPath = path.join(from, ".zip")
+    let releaseName = helpers.getReleaseName();
+    let zipPath = path.resolve(`./dist/${releaseName}.zip`)
     let zip = new admzip();
     console.log("Pack " + from);
     zip.addLocalFolder(from);
@@ -21,29 +23,32 @@ function packReleaseZip() {
 }
 
 function packMozillaSource() {
-    let sourcesPath = path.resolve("..");
-    let releaseDir = helpers.getReleaseDir();
-    let zipPath = path.resolve(releaseDir + "_sources.zip");
+    let sourcesPath = path.resolve(".");
+    console.log("Pack sources " + sourcesPath)
+    let releaseName = helpers.getReleaseName();
+    let zipPath = path.resolve(`./dist/${releaseName}_sources.zip`)
     let zip = new admzip();
 
+    let ignore = getIgnore();
     for (let file of fs.readdirSync(sourcesPath)) {
         // Hide elements
-        if (!nonSourcesContent.includes(file) || file.indexOf("ccc_") === -1) {
-            let filePath = path.join(sourcesPath, file);
-            let stats = fs.lstatSync( filePath );
-            if (stats.isDirectory()) {
-                zip.addLocalFolder( filePath, file );
-            }
-            else {
-                zip.addLocalFile( filePath );
-            }
+        if (file.startsWith(".") || ignore.includes(file)) {
+            continue;
+        }
+
+        // Add to zip
+        let filePath = path.join(sourcesPath, file);
+        let stats = fs.lstatSync( filePath );
+        if (stats.isDirectory()) {
+            zip.addLocalFolder( filePath, file );
+        }
+        else {
+            zip.addLocalFile( filePath );
         }
     }
 
-    //zip.addLocalFolder(path.resolve("."));
-    zip.writeZip( sourcesZipPath );
-
-    console.log("Source packed! " + sourcesZipPath);
+    zip.writeZip( zipPath );
+    console.log("Source packed! " + zipPath);
 }
 
 packReleaseZip();

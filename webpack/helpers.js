@@ -11,7 +11,7 @@ function getManifest() {
     );
 }
 
-export function outputDir(outname) {
+function outputDir(outname) {
     let outpath = path.join( __dirname, outname );
 
     if (!fs.existsSync(outpath)) {
@@ -21,16 +21,18 @@ export function outputDir(outname) {
     return outpath;
 }
 
-export function getReleaseName() {
+function getReleaseName() {
     let manifest = getManifest();
     let version = manifest.version.split(".").join("_");
     let releaseName = "ccc_" + version;
     return releaseName;
 }
 
-export function getReleaseDir() {
+function getReleaseDir() {
     let releaseName = getReleaseName();
     let releasePath = `../dist/${releaseName}/js`;
     let releaseDir = outputDir(releasePath);
     return releaseDir;
 }
+
+module.exports = { outputDir, getReleaseName, getReleaseDir }
